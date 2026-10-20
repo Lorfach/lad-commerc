@@ -1,0 +1,619 @@
+.heroWrapper {
+  position: relative;
+  background-color: var(--color-ground, #fdf9ee);
+  width: 100%;
+  height: 768px;
+  max-height: 768px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Top status strip - measured height: 39px */
+.topStrip {
+  background-color: #643831;
+  color: #edd0cb;
+  height: 39px;
+  min-height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13.5px;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.topLocationContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #edd0cb;
+}
+
+.topPinIcon {
+  color: #edd0cb;
+}
+
+/* Header strip with bottom dividing line - height: 77px (y: 39px to 116px) */
+.headerStrip {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  width: 100%;
+  height: 77px;
+  min-height: 77px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.headerNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1376px;
+  margin: 0 auto;
+  padding: 0 48px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.brandLogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #643831;
+  text-decoration: none;
+}
+
+.brandEmblemSvg {
+  width: 44px;
+  height: 44px;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  color: #643831;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #090909;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.navLink:hover {
+  color: #be8b4d;
+}
+
+.navPhoneLink {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  color: #090909;
+  text-decoration: none;
+}
+
+/* Hero body - from y=116px to y=691px (total height: 575px) */
+.heroContainer {
+  width: 100%;
+  max-width: 1376px;
+  margin: 0 auto;
+  padding: 38px 48px 0 96px; /* 116px + 38px = 154px exact start for hero-title; 96px left aligns with comp grid column */
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 56% 44%;
+  align-items: flex-start;
+  height: 575px;
+  position: relative;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+/* hero-title: box sits at x=96px, y=154px to 384px (height: 230px) */
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: 47px;
+  font-weight: 800;
+  line-height: 1.18;
+  color: #090909;
+  letter-spacing: -0.015em;
+  margin: 0;
+  padding: 0;
+  max-width: 780px;
+  height: 200px;
+}
+
+/* hero-description: box sits at y=384px to 538px, comp ink starts at y=403px, 3 lines, #bb8d48 */
+.heroDescription {
+  font-size: 17.5px;
+  font-weight: 500;
+  line-height: 1.62;
+  color: #bb8d48;
+  max-width: 480px;
+  margin: 40px 0 0 0;
+  padding: 0;
+  height: 86px;
+}
+
+/* heroActions */
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.btnPrice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #be8b4d;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  height: 48px;
+  padding: 0 28px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(190, 139, 77, 0.2);
+  transition: all var(--transition-fast);
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.btnPrice:hover {
+  background-color: #a8763b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(190, 139, 77, 0.3);
+}
+
+.btnWhatsApp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: #1c1514;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 10px;
+  border: 1.5px solid #4a3b38;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.btnWhatsApp:hover {
+  background-color: #fbf9f6;
+  border-color: #1c1514;
+  transform: translateY(-1px);
+}
+
+/* Plate showcase - flush to right edge */
+.heroShowcasePlate {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 116px;
+  width: clamp(560px, 48vw, 800px);
+  height: 575px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.tempBadge {
+  position: absolute;
+  top: 14px;
+  right: 48px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #090909;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 5;
+}
+
+.snowIcon {
+  font-size: 14px;
+}
+
+.plateImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right center;
+}
+
+/* Metrics footer strip - height: 77px (y: 691px to 768px) */
+.metricsStrip {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--color-ground, #fdf9ee);
+  height: 77px;
+  min-height: 77px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.metricsContainer {
+  width: 100%;
+  max-width: 1376px;
+  margin: 0 auto;
+  padding: 0 48px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(48px, 8vw, 120px);
+}
+
+.metricItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.metricNumber {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 800;
+  color: #090909;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.metricLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #676764;
+  line-height: 1.25;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .heroWrapper {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .headerNav {
+    padding: 0 32px;
+  }
+
+  .navLinks {
+    gap: 20px;
+  }
+
+  .navLink {
+    font-size: 14.5px;
+  }
+
+  .heroContainer {
+    grid-template-columns: 1fr;
+    padding: 32px 32px 16px 32px;
+    height: auto;
+  }
+
+  .heroTitle {
+    font-size: 38px;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .heroDescription {
+    font-size: 16px;
+    height: auto;
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  .heroActions {
+    margin-top: 24px;
+    margin-left: 0;
+  }
+
+  .heroShowcasePlate {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    height: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 16px 24px 24px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .plateImage {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 360px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
+  .metricsStrip {
+    height: auto;
+    min-height: auto;
+    padding: 24px 32px;
+  }
+
+  .metricsContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 1024px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .topStrip {
+    height: auto;
+    min-height: 34px;
+    padding: 6px 16px;
+  }
+
+  .topLocationContent {
+    font-size: 12px;
+    line-height: 1.35;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .headerStrip {
+    height: 64px;
+    min-height: 64px;
+  }
+
+  .headerNav {
+    padding: 0 16px;
+  }
+
+  .navMenu {
+    display: none;
+  }
+
+  .brandLogo {
+    gap: 8px;
+  }
+
+  .brandEmblemSvg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .brandText {
+    font-size: 15px;
+  }
+
+  .navPhoneLink {
+    font-size: 13.5px;
+    padding: 6px 12px;
+    background-color: rgba(100, 56, 49, 0.06);
+    border-radius: 8px;
+    color: #643831;
+    white-space: nowrap;
+  }
+
+  .heroContainer {
+    padding: 24px 16px 12px 16px;
+  }
+
+  .heroShowcasePlate {
+    max-width: 480px;
+    padding: 8px 16px 20px 16px;
+  }
+
+  .plateImage {
+    max-height: 280px;
+  }
+
+  .metricsStrip {
+    padding: 20px 16px;
+  }
+
+  .metricsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .metricItem {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .metricNumber {
+    font-size: 28px;
+    justify-content: center;
+  }
+
+  .metricLabel {
+    font-size: 11.5px;
+    text-align: center;
+    line-height: 1.25;
+  }
+}
+
+@media (max-width: 540px) {
+  .desktopBr {
+    display: none;
+  }
+
+  .heroTitle {
+    font-size: clamp(24px, 7vw, 30px);
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+  }
+
+  .heroDescription {
+    font-size: 14.5px;
+    line-height: 1.5;
+    margin-top: 14px;
+  }
+
+  .heroActions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .btnPrice,
+  .btnWhatsApp {
+    width: 100%;
+    height: 48px;
+    font-size: 15px;
+    justify-content: center;
+  }
+
+  .heroShowcasePlate {
+    max-width: 360px;
+    padding: 6px 12px 16px 12px;
+  }
+
+  .plateImage {
+    max-height: 220px;
+  }
+
+  .metricsContainer {
+    gap: 6px;
+  }
+
+  .metricNumber {
+    font-size: 22px;
+  }
+
+  .metricLabel {
+    font-size: 10.5px;
+    line-height: 1.2;
+  }
+}
+
+@media (min-width: 1400px) {
+  .heroWrapper {
+    height: 804px;
+    max-height: 804px;
+  }
+  .topStrip {
+    height: 41px;
+  }
+  .headerStrip {
+    height: 81px;
+    min-height: 81px;
+  }
+  .headerNav {
+    height: 100%;
+    max-width: 1440px;
+    padding: 0 96px;
+  }
+  .heroContainer {
+    max-width: 1440px;
+    height: 605px;
+    padding: 50px 48px 0 96px; /* Title starts at 41 + 81 + 50 = 172px, inside tier 160.8..402px */
+  }
+  .heroTitle {
+    font-size: 48px;
+    height: 180px;
+    margin: 0;
+  }
+  .heroDescription {
+    margin: 55px 0 0 0; /* Description starts at 172 + 180 + 55 = 407px, inside tier 402..562.8px */
+    height: 85px;
+    max-width: 480px;
+    line-height: 1.55;
+  }
+  .heroActions {
+    margin-top: 50px;
+    gap: 16px;
+  }
+  .btnPrice {
+    width: auto;
+    height: 48px;
+    padding: 0 30px;
+  }
+  .btnWhatsApp {
+    width: auto;
+    height: 48px;
+    padding: 0 24px;
+  }
+  .heroShowcasePlate {
+    height: 605px;
+    width: clamp(640px, 48vw, 880px);
+    top: 122px;
+    right: 0;
+  }
+  .metricsStrip {
+    height: 77px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .metricsContainer {
+    max-width: 1440px;
+    padding: 0 48px;
+    justify-content: center;
+    gap: clamp(64px, 10vw, 160px);
+  }
+}
+
