@@ -60,7 +60,7 @@ export default function InquiryFormModal({ isOpen, onClose, initialCategory }: I
           <div>
             <h3 className={styles.title}>Расчет условий поставок</h3>
             <p className={styles.subtitle}>
-              Цены и условия формируются индивидуально под формат торговой точки. Заполните заявку — менеджер свяжется с вами и рассчитает персональные условия.
+              Цены и условия формируются под объем и формат торговой точки. Заполните заявку — менеджер свяжется с вами и рассчитает персональные условия.
             </p>
 
             <form onSubmit={handleSubmit}>
@@ -82,7 +82,7 @@ export default function InquiryFormModal({ isOpen, onClose, initialCategory }: I
                     onClick={() => setBusinessType('wholesale')}
                   >
                     <Building size={18} />
-                    <span>Оптовая база / дистрибьютор</span>
+                    <span>Оптовая база / склад</span>
                   </button>
                 </div>
               </div>
@@ -112,7 +112,7 @@ export default function InquiryFormModal({ isOpen, onClose, initialCategory }: I
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.label}>Название точки / магазина / ИП</label>
+                <label className={styles.label}>Название магазина / ИП</label>
                 <input
                   type="text"
                   placeholder="Например: магазин «Берёзка» или ИП Смирнов"
@@ -153,9 +153,9 @@ export default function InquiryFormModal({ isOpen, onClose, initialCategory }: I
             <div className={styles.successIcon}>
               <CheckCircle2 size={36} />
             </div>
-            <h3 className={styles.successTitle}>Заявка успешно принята</h3>
+            <h3 className={styles.successTitle}>Заявка принята</h3>
             <p className={styles.successText}>
-              Спасибо, <strong>{name}</strong>! Мы подготовим индивидуальный расчет условий поставок для вашей точки и перезвоним по номеру <strong>{phone}</strong> в течение 15 минут.
+              Спасибо, <strong>{name}</strong>! Мы подготовим индивидуальный расчет условий для вашей точки и перезвоним по номеру <strong>{phone}</strong> в рабочее время склада (Пн–Сб, с 09:00 до 18:00).
             </p>
 
             <div className={styles.successActions}>
@@ -164,7 +164,7 @@ export default function InquiryFormModal({ isOpen, onClose, initialCategory }: I
                 className={styles.btnClose}
                 onClick={onClose}
               >
-                Отлично, понятно
+                Закрыть
               </button>
             </div>
           </div>

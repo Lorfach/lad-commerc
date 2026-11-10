@@ -20,7 +20,7 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
     type: 'hub',
     x: 48,
     y: 44,
-    description: 'Главный температурный складской комплекс (+18°C), офис и зона оперативной комплектации заказов.',
+    description: 'Складской комплекс с постоянным температурным режимом (+18°C), офис и зона комплектации заказов.',
     status: 'База дистрибьюции',
   };
 
@@ -38,11 +38,11 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
     // Almaty Oblast (Region)
     { id: 'region-talgar', name: 'г. Талгар', area: 'Область', stores: '16 магазинов-партнеров', x: 74, y: 56, type: 'region', desc: 'Талгарский тракт, регулярный рейс по Вт и Пт' },
     { id: 'region-kaskelen', name: 'г. Каскелен', area: 'Область', stores: '18 магазинов-партнеров', x: 16, y: 64, type: 'region', desc: 'Верхняя трасса, рейс по Пн и Чт' },
-    { id: 'region-konaev', name: 'г. Конаев (Капшагай)', area: 'Область', stores: '12 торговых точек', x: 72, y: 16, type: 'region', desc: 'Северное направление, оптовые поставки' },
+    { id: 'region-konaev', name: 'г. Конаев (Капшагай)', area: 'Область', stores: '12 торговых точек', x: 72, y: 16, type: 'region', desc: 'Северное направление, поставки по согласованию' },
     { id: 'region-otegen', name: 'пос. Отеген-Батыр (ГРЭС)', area: 'Область', stores: '15 торговых точек', x: 56, y: 22, type: 'region', desc: 'Илийский район, поставка в течение 24ч' },
     { id: 'region-baiserke', name: 'пос. Байсерке', area: 'Область', stores: '9 торговых точек', x: 51, y: 15, type: 'region', desc: 'Илийский район, снабжение розницы' },
     { id: 'region-esik', name: 'г. Есик', area: 'Область', stores: '11 магазинов-партнеров', x: 86, y: 62, type: 'region', desc: 'Енбекшиказахский район, восточный маршрут' },
-    { id: 'region-shelek', name: 'с. Шелек', area: 'Область', stores: '8 торговых точек', x: 92, y: 48, type: 'region', desc: 'Кульджинский тракт, оптовые поставки' },
+    { id: 'region-shelek', name: 'с. Шелек', area: 'Область', stores: '8 торговых точек', x: 92, y: 48, type: 'region', desc: 'Кульджинский тракт, поставка по графику' },
   ];
 
   const visiblePoints = points.filter((p) => {
@@ -69,7 +69,7 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
 
           <h2 className={styles.title}>География поставок и дистрибьюции</h2>
           <p className={styles.subtitle}>
-            Собственный складской хаб на ул. Черноморская, 12 и отлаженные маршруты доставки. Поставляем кондитерскую продукцию фабрик «Алёшина», «Черногорский Кондитер» и «Томский Кондитер» в более чем 150 торговых точек региона.
+            Складской комплекс на ул. Черноморская, 12. Ежедневные маршруты по районам Алматы и регулярные рейсы по городам и поселкам Алматинской области.
           </p>
 
           <div className={styles.filterBar}>
@@ -107,12 +107,11 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
               </div>
               <div className={styles.legendItem}>
                 <span className={styles.legendStarDot}>★</span>
-                <span>Торговые точки и розничные магазины</span>
+                <span>Торговые точки и магазины</span>
               </div>
             </div>
 
             <div className={styles.mapCanvasWrapper}>
-              {/* Regional terrain backdrop sketch */}
               <svg className={styles.mapSvgBg} viewBox="0 0 100 80" preserveAspectRatio="none">
                 <defs>
                   <radialGradient id="almatyGlow" cx="48%" cy="50%" r="40%">
@@ -122,7 +121,6 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
                   </radialGradient>
                 </defs>
                 <rect width="100" height="80" fill="url(#almatyGlow)" />
-                {/* stylized boundary lines */}
                 <path
                   d="M10,70 Q25,65 40,75 T70,68 T95,50"
                   fill="none"
@@ -137,7 +135,6 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
                   strokeWidth="0.8"
                   strokeDasharray="2,2"
                 />
-                {/* Connecting routes from Hub */}
                 {visiblePoints.map((p) => (
                   <line
                     key={`line-${p.id}`}
@@ -186,7 +183,7 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
             </div>
 
             <div className={styles.mapFooterNote}>
-              <span>💡 Нажмите на любую точку или склад на карте, чтобы посмотреть охват и подробности</span>
+              <span>Нажмите на точку или склад на карте для просмотра подробностей</span>
             </div>
           </div>
 
@@ -230,7 +227,7 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
               <div className={styles.metricsBox}>
                 <div className={styles.metricItem}>
                   <span className={styles.metricVal}>24ч</span>
-                  <span className={styles.metricSub}>Срок доставки</span>
+                  <span className={styles.metricSub}>Срок сборки</span>
                 </div>
                 <div className={styles.metricItem}>
                   <span className={styles.metricVal}>+18°C</span>
@@ -255,19 +252,19 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
             </div>
 
             <div className={styles.factsCard}>
-              <h4 className={styles.factsTitle}>Как работает логистика:</h4>
+              <h4 className={styles.factsTitle}>Параметры доставки:</h4>
               <ul className={styles.factsList}>
                 <li>
                   <CheckCircle size={15} className={styles.factCheck} />
-                  <span><strong>Ежедневная комплектация:</strong> сборка заказов на Черноморской, 12 день в день.</span>
+                  <span><strong>Сборка заказа:</strong> комплектация на ул. Черноморская, 12 день в день.</span>
                 </li>
                 <li>
                   <CheckCircle size={15} className={styles.factCheck} />
-                  <span><strong>Свой автопарк:</strong> доставка прямо к дверям магазина или на рампу оптовой базы.</span>
+                  <span><strong>Свой транспорт:</strong> выгрузка на рампу склада или в зону приемки магазина.</span>
                 </li>
                 <li>
                   <CheckCircle size={15} className={styles.factCheck} />
-                  <span><strong>Официальные документы:</strong> ЭСФ, накладные, сертификаты соответствия ЕАС.</span>
+                  <span><strong>Официальный пакет:</strong> работа с НДС, ЭСФ, накладные, сертификаты ЕАС.</span>
                 </li>
               </ul>
             </div>
@@ -277,4 +274,3 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
     </section>
   );
 }
-
