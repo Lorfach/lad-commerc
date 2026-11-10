@@ -138,14 +138,29 @@ export default function HeroSection() {
             />
 
             <div className={`${styles.factoryTag} ${styles.tagAlyoshina}`}>
+              <img
+                src="/assets/factories/alyoshina-logo.jpg"
+                alt="Логотип фабрики Алёшина"
+                className={styles.tagLogo}
+              />
               <span>«Завод АлёшинА»</span>
             </div>
 
             <div className={`${styles.factoryTag} ${styles.tagChernogorsk}`}>
+              <img
+                src="/assets/factories/chernogorsk-logo.png"
+                alt="Логотип Кондитерского концерна Черногорский"
+                className={styles.tagLogo}
+              />
               <span>«Черногорский Кондитер»</span>
             </div>
 
             <div className={`${styles.factoryTag} ${styles.tagTomsk}`}>
+              <img
+                src="/assets/factories/tomsk-logo.png"
+                alt="Логотип фабрики Томский Кондитер"
+                className={styles.tagLogo}
+              />
               <span>«Томский Кондитер»</span>
             </div>
           </div>

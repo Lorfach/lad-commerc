@@ -392,9 +392,17 @@
   color: #1c1514;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   box-shadow: 0 4px 12px rgba(100, 56, 49, 0.08);
   white-space: nowrap;
+}
+
+.tagLogo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  border-radius: 4px;
+  flex-shrink: 0;
 }
 
 .tagCheck {
