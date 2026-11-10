@@ -21,7 +21,6 @@ interface FactoryData {
   name: string;
   logo: string;
   location: string;
-  tagline: string;
   description: string;
   photos: FactoryPhoto[];
   flagships: FactoryFlagship[];
@@ -34,10 +33,9 @@ const FACTORIES: FactoryData[] = [
     code: 'alyoshina',
     name: '«Завод АлёшинА»',
     logo: '/assets/factories/alyoshina-logo.jpg',
-    location: 'г. Абакан • Сибирь',
-    tagline: 'Соломка, хворост, сушки и глазированные сладости',
+    location: 'г. Абакан (Хакасия)',
     description:
-      'Автоматизированные линии производства. Продукция упакована в пачки флоу-пак с прозрачным окном. Удобно для выкладки на полках продуктовых магазинов и супермаркетов.',
+      'Соломка, хворост, сушки, драже и щербет в розничных пачках флоу-пак с прозрачным окном, прикассовых шоу-боксах и весовых коробках.',
     photos: [
       {
         src: '/assets/factories/alyoshina-solomka.jpg',
@@ -51,12 +49,12 @@ const FACTORIES: FactoryData[] = [
       },
     ],
     flagships: [
-      { title: 'Соломка «Для папы», «Для мамы», «Для дочки»', note: 'Соленая, ванильная и классическая сладкая соломка' },
+      { title: 'Соломка «Для папы», «Для мамы», «Для дочки»', note: 'Соленая, ванильная и сладкая соломка в пачках' },
       { title: 'Глазированная соломка «Шоко Шоу»', note: 'В шоколадной и белой глазури с арахисом и кокосом' },
-      { title: 'Слойка и хворост «Хруст хвороста»', note: 'Хрустящий хворост в сахарной пудре и со сгущенкой' },
-      { title: 'Сдобные сушки и баранки по ГОСТу', note: 'Длительный срок хранения, фасовка в пачках и коробках' },
+      { title: 'Слойка и хворост «Хруст хвороста»', note: 'Хворост в сахарной пудре и со сгущенкой' },
+      { title: 'Сдобные сушки и баранки по ГОСТу', note: 'Фасовка в розничных пачках и весовых гофрокоробах' },
       { title: 'Драже «Грибочки, цветочки»', note: 'Глазированное печенье в штучной упаковке для прикассовой зоны' },
-      { title: 'Сливочный и ореховый щербет, ирис', note: 'Мягкий ирис и щербет в индивидуальной и весовой упаковке' },
+      { title: 'Сливочный и ореховый щербет, ирис', note: 'Тираженный ирис и щербет в индивидуальной и весовой фасовке' },
     ],
     formats: ['Шоу-боксы для прикассовой зоны', 'Пачки флоу-пак для полок', 'Весовые коробки по 2–4 кг'],
   },
@@ -66,9 +64,8 @@ const FACTORIES: FactoryData[] = [
     name: 'Кондитерский концерн «Черногорский»',
     logo: '/assets/factories/chernogorsk-logo.png',
     location: 'г. Черногорск (Хакасия)',
-    tagline: 'Вафли, печенье, пряники и зефир',
     description:
-      'Крупный производитель Хакасии с широкой вафельной и печеньевой группой. Стабильные объемы весовой и фасованной продукции для повседневного чаепития.',
+      'Производство многослойных вафель, сахарного и затяжного печенья с суфле, сырцовых и глазированных пряников, зефира на пектине.',
     photos: [
       {
         src: '/assets/factories/chernogorsk-vafli.jpg',
@@ -90,21 +87,20 @@ const FACTORIES: FactoryData[] = [
       { title: 'Вафли «Детский Орлёнок» и «Мамина сказка»', note: 'Многослойные вафли со сливочной и шоколадной начинкой' },
       { title: 'Вафли «Полосатый Тёма» и «Черногорские»', note: 'Плотные вафли с начинкой из какао и ореха' },
       { title: 'Печенье с суфле «Сибирская колибри»', note: 'Затяжное печенье с воздушной прослойкой суфле' },
-      { title: 'Сахарное и овсяное печенье по ГОСТу', note: 'Весовое и фасованное печенье для розничной торговли' },
-      { title: 'Пряники с фруктовыми начинками', note: 'С джемом, вареной сгущенкой и сахарной глазурью' },
-      { title: 'Зефир и пастила на пектине', note: 'Классический ванильный и яблочный зефир в коробках и на развес' },
+      { title: 'Сахарное и овсяное печенье по ГОСТу', note: 'Весовое и фасованное печенье для розничных магазинов' },
+      { title: 'Пряники с фруктовыми начинками', note: 'С яблочным повидлом, вареной сгущенкой и в сахарной глазури' },
+      { title: 'Зефир и пастила на пектине', note: 'Ванильный и бело-розовый зефир в телевизорах и пачках' },
     ],
-    formats: ['Весовые гофрокороба 3–5 кг', 'Розничные пачки', 'Шоу-боксы'],
+    formats: ['Весовые гофрокороба 3–5 кг', 'Розничные пачки 200–450 г', 'Шоу-боксы'],
   },
   {
     id: 'tomsk',
     code: 'tomsk',
-    name: '«Томский Кондитер» (с 1986 года)',
+    name: '«Томский Кондитер»',
     logo: '/assets/factories/tomsk-logo.png',
-    location: 'г. Томск • Производство с 1986 года',
-    tagline: 'Маффины «Мафф и Ози», сдобное печенье и крекеры',
+    location: 'г. Томск • с 1986 года',
     description:
-      'Более 250 видов выпечки и печенья на европейском оборудовании. Позиции регулярного спроса для розничных полок и сетей.',
+      'Выпуск кексов и маффинов с начинкой, сдобного и творожного печенья, сахарного печенья в глазури, песочного курабье и крекеров.',
     photos: [
       {
         src: '/assets/factories/tomsk-products.webp',
@@ -124,13 +120,13 @@ const FACTORIES: FactoryData[] = [
     ],
     flagships: [
       { title: 'Маффины «Мафф и Ози»', note: 'Кексы с начинкой из вареной сгущенки, шоколада и клубники' },
-      { title: 'Печенье «Топлёное молоко» и «К кофе»', note: 'Классическое сахарное печенье, в том числе глазированное' },
-      { title: 'Сдобное и творожное печенье', note: 'Печенье на сливочном и натуральном творожном тесте' },
+      { title: 'Печенье «Топлёное молоко» и «К кофе»', note: 'Классическое сахарное печенье и печенье в кондитерской глазури' },
+      { title: 'Сдобное и творожное печенье', note: 'Выпечка на сливочном и творожном тесте' },
       { title: 'Печенье серии «Юбилейное фото»', note: 'Рассыпчатое сдобное печенье в фасованных пачках' },
-      { title: 'Песочное курабье и колечки', note: 'Курабье в весовых гофрокоробах и прозрачных блистерах' },
+      { title: 'Песочное курабье и колечки', note: 'Курабье в весовых гофрокоробах и прозрачных коррексах' },
       { title: 'Хрустящий крекер и снеки', note: 'Соленый, сырный, луковый и классический крекер' },
     ],
-    formats: ['Фасованные пачки 450 г', 'Лотки и блистеры', 'Весовая гофротара'],
+    formats: ['Фасованные пачки 450 г', 'Лотки и коррексы', 'Весовая гофротара'],
   },
 ];
 
@@ -152,6 +148,10 @@ function FactoryCardItem({
             <img
               src={factory.logo}
               alt={`Логотип ${factory.name}`}
+              width={110}
+              height={38}
+              loading="lazy"
+              decoding="async"
               className={styles.factoryLogoImg}
             />
           </div>
@@ -162,7 +162,6 @@ function FactoryCardItem({
         </div>
 
         <h3 className={styles.factoryName}>{factory.name}</h3>
-        <p className={styles.factoryTagline}>{factory.tagline}</p>
         <p className={styles.factoryDesc}>{factory.description}</p>
       </div>
 
@@ -172,6 +171,10 @@ function FactoryCardItem({
           <img
             src={currentPhoto.src}
             alt={currentPhoto.alt}
+            width={360}
+            height={220}
+            loading="lazy"
+            decoding="async"
             className={styles.mainPhotoImg}
           />
           <div className={styles.photoCaptionBar}>
@@ -180,11 +183,12 @@ function FactoryCardItem({
         </div>
 
         {factory.photos.length > 1 && (
-          <div className={styles.thumbRow}>
+          <div className={styles.thumbRow} role="group" aria-label={`Фотографии продукции ${factory.name}`}>
             {factory.photos.map((photo, idx) => (
               <button
                 key={photo.src}
                 type="button"
+                aria-pressed={idx === photoIndex}
                 className={`${styles.thumbBtn} ${idx === photoIndex ? styles.thumbBtnActive : ''}`}
                 onClick={() => setPhotoIndex(idx)}
                 aria-label={`Показать фото: ${photo.title}`}
@@ -192,6 +196,10 @@ function FactoryCardItem({
                 <img
                   src={photo.src}
                   alt={photo.alt}
+                  width={54}
+                  height={40}
+                  loading="lazy"
+                  decoding="async"
                   className={styles.thumbImg}
                 />
               </button>
@@ -201,7 +209,7 @@ function FactoryCardItem({
       </div>
 
       <div className={styles.flagshipsSection}>
-        <span className={styles.flagshipsHeading}>Позиции в наличии на складе:</span>
+        <h4 className={styles.flagshipsHeading}>Позиции в наличии на складе:</h4>
         <div className={styles.flagshipsGrid}>
           {factory.flagships.map((item, idx) => (
             <div key={idx} className={styles.flagshipItem}>
@@ -261,9 +269,10 @@ export default function FactoryPartners() {
             ТОО «Лад Коммерц» — дистрибьютор фабрик «Завод АлёшинА», «Черногорский Кондитер» и «Томский Кондитер». Продукция хранится на складе в Алматы и готова к отгрузке.
           </p>
 
-          <div className={styles.tabsNav}>
+          <div className={styles.tabsNav} role="group" aria-label="Фильтр по фабрикам">
             <button
               type="button"
+              aria-pressed={activeTab === 'all'}
               className={`${styles.tabBtn} ${activeTab === 'all' ? styles.tabBtnActive : ''}`}
               onClick={() => setActiveTab('all')}
             >
@@ -271,6 +280,7 @@ export default function FactoryPartners() {
             </button>
             <button
               type="button"
+              aria-pressed={activeTab === 'alyoshina'}
               className={`${styles.tabBtn} ${activeTab === 'alyoshina' ? styles.tabBtnActive : ''}`}
               onClick={() => setActiveTab('alyoshina')}
             >
@@ -278,6 +288,7 @@ export default function FactoryPartners() {
             </button>
             <button
               type="button"
+              aria-pressed={activeTab === 'chernogorsk'}
               className={`${styles.tabBtn} ${activeTab === 'chernogorsk' ? styles.tabBtnActive : ''}`}
               onClick={() => setActiveTab('chernogorsk')}
             >
@@ -285,6 +296,7 @@ export default function FactoryPartners() {
             </button>
             <button
               type="button"
+              aria-pressed={activeTab === 'tomsk'}
               className={`${styles.tabBtn} ${activeTab === 'tomsk' ? styles.tabBtnActive : ''}`}
               onClick={() => setActiveTab('tomsk')}
             >

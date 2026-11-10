@@ -8,37 +8,37 @@ export default function CoverageMap() {
   const [filter, setFilter] = useState<'all' | 'city' | 'region'>('all');
   const [selectedPoint, setSelectedPoint] = useState<string>('hub');
 
-  // Central distribution hub: Chernomorskaya 12
+  // Central distribution hub: Chernomorskaya 12 (Zhetysu / Turksib border near Ryskulov)
   const hub = {
     id: 'hub',
     name: 'Центральный склад ТОО «Лад Коммерц»',
     address: 'г. Алматы, ул. Черноморская, д. 12',
     type: 'hub' as const,
     x: 48,
-    y: 44,
+    y: 40,
     description:
       'Собственный складской комплекс с температурным режимом +18°C, асфальтированным подъездом для грузового транспорта и зоной самовывоза.',
   };
 
   const points = [
-    // Almaty Districts
-    { id: 'almaty-zhetysu', name: 'Жетысуский район', area: 'Алматы', x: 49, y: 39, type: 'city' as const, desc: 'Пр. Рыскулова, Северное кольцо, ул. Аэродромная, мкр. Кулагер, Айнабулак' },
-    { id: 'almaty-almaly', name: 'Алмалинский район', area: 'Алматы', x: 44, y: 52, type: 'city' as const, desc: 'Ул. Толе би, Гоголя, пр. Абылай хана, пр. Сейфуллина, Тастак' },
-    { id: 'almaty-medeu', name: 'Медеуский район', area: 'Алматы', x: 55, y: 55, type: 'city' as const, desc: 'Пр. Достык, Жибек Жолы, ул. Луганского, мкр. Самал, Думан' },
-    { id: 'almaty-bostandyk', name: 'Бостандыкский район', area: 'Алматы', x: 42, y: 62, type: 'city' as const, desc: 'Ул. Розыбакиева, пр. Аль-Фараби, ул. Тимирязева, мкр. Орбита, Казахфильм' },
-    { id: 'almaty-auezov', name: 'Ауэзовский район', area: 'Алматы', x: 33, y: 54, type: 'city' as const, desc: 'Ул. Шаляпина, Саина, пр. Улугбека, мкр. Аксай, Жетысу, Мамыр' },
-    { id: 'almaty-turksib', name: 'Турксибский район', area: 'Алматы', x: 58, y: 32, type: 'city' as const, desc: 'Пр. Суюнбая, ул. Шолохова, Майлина, район вокзала Алматы-1, мкр. Жулдыз' },
-    { id: 'almaty-alatau', name: 'Алатауский район', area: 'Алматы', x: 34, y: 38, type: 'city' as const, desc: 'Ул. Момышулы, пр. Райымбека, мкр. Саялы, Акбулак, Алгабас, Зердели' },
-    { id: 'almaty-nauryzbay', name: 'Наурызбайский район', area: 'Алматы', x: 26, y: 60, type: 'city' as const, desc: 'Пр. Абая, мкр. Калкаман, Акжар, Шугыла, Таусамалы' },
+    // Almaty Districts (well-spaced geographic positions)
+    { id: 'almaty-zhetysu', name: 'Жетысуский р-н', fullName: 'Жетысуский район', area: 'Алматы', x: 45, y: 31, type: 'city' as const, desc: 'Пр. Рыскулова, Северное кольцо, ул. Аэродромная, мкр. Кулагер, Айнабулак' },
+    { id: 'almaty-turksib', name: 'Турксибский р-н', fullName: 'Турксибский район', area: 'Алматы', x: 61, y: 31, type: 'city' as const, desc: 'Пр. Суюнбая, ул. Шолохова, Майлина, район вокзала Алматы-1, мкр. Жулдыз' },
+    { id: 'almaty-alatau', name: 'Алатауский р-н', fullName: 'Алатауский район', area: 'Алматы', x: 30, y: 37, type: 'city' as const, desc: 'Ул. Момышулы, пр. Райымбека, мкр. Саялы, Акбулак, Алгабас, Зердели' },
+    { id: 'almaty-almaly', name: 'Алмалинский р-н', fullName: 'Алмалинский район', area: 'Алматы', x: 46, y: 51, type: 'city' as const, desc: 'Ул. Толе би, Гоголя, пр. Абылай хана, пр. Сейфуллина, Тастак' },
+    { id: 'almaty-auezov', name: 'Ауэзовский р-н', fullName: 'Ауэзовский район', area: 'Алматы', x: 31, y: 52, type: 'city' as const, desc: 'Ул. Шаляпина, Саина, пр. Улугбека, мкр. Аксай, Жетысу, Мамыр' },
+    { id: 'almaty-medeu', name: 'Медеуский р-н', fullName: 'Медеуский район', area: 'Алматы', x: 60, y: 54, type: 'city' as const, desc: 'Пр. Достык, Жибек Жолы, ул. Луганского, ВОАД, мкр. Самал, Думан' },
+    { id: 'almaty-bostandyk', name: 'Бостандыкский р-н', fullName: 'Бостандыкский район', area: 'Алматы', x: 44, y: 65, type: 'city' as const, desc: 'Ул. Розыбакиева, пр. Аль-Фараби, ул. Тимирязева, мкр. Орбита, Казахфильм' },
+    { id: 'almaty-nauryzbay', name: 'Наурызбайский р-н', fullName: 'Наурызбайский район', area: 'Алматы', x: 24, y: 66, type: 'city' as const, desc: 'Пр. Абая, мкр. Калкаман, Акжар, Шугыла, Таусамалы' },
 
     // Almaty Oblast (Region)
-    { id: 'region-talgar', name: 'г. Талгар', area: 'Алматинская область', x: 74, y: 56, type: 'region' as const, desc: 'Талгарский тракт, доставка в розничные магазины и оптовые точки города' },
-    { id: 'region-kaskelen', name: 'г. Каскелен', area: 'Алматинская область', x: 16, y: 64, type: 'region' as const, desc: 'Карасайский район, верхняя и нижняя трассы, снабжение магазинов и рынков' },
-    { id: 'region-konaev', name: 'г. Конаев', area: 'Алматинская область', x: 72, y: 16, type: 'region' as const, desc: 'Северное направление по трассе А3, поставки партий по согласованию' },
-    { id: 'region-otegen', name: 'пос. Отеген-Батыр', area: 'Алматинская область', x: 56, y: 22, type: 'region' as const, desc: 'Илийский район (ГРЭС), доставка собственным автотранспортом со склада' },
-    { id: 'region-baiserke', name: 'пос. Байсерке', area: 'Алматинская область', x: 51, y: 15, type: 'region' as const, desc: 'Илийский район, снабжение продуктовых магазинов и торговых точек' },
-    { id: 'region-esik', name: 'г. Есик', area: 'Алматинская область', x: 86, y: 62, type: 'region' as const, desc: 'Енбекшиказахский район, восточный маршрут по Кульджинскому и Талгарскому трактам' },
-    { id: 'region-shelek', name: 'с. Шелек', area: 'Алматинская область', x: 92, y: 48, type: 'region' as const, desc: 'Восточное направление по Кульджинскому тракту, регулярные поставки' },
+    { id: 'region-konaev', name: 'г. Конаев', fullName: 'г. Конаев', area: 'Алматинская область', x: 67, y: 11, type: 'region' as const, desc: 'Северное направление по трассе А3, поставки партий по согласованию' },
+    { id: 'region-baiserke', name: 'пос. Байсерке', fullName: 'пос. Байсерке', area: 'Алматинская область', x: 48, y: 14, type: 'region' as const, desc: 'Илийский район, снабжение продуктовых магазинов и торговых точек' },
+    { id: 'region-otegen', name: 'Отеген-Батыр', fullName: 'пос. Отеген-Батыр (ГРЭС)', area: 'Алматинская область', x: 58, y: 20, type: 'region' as const, desc: 'Илийский район (ГРЭС), доставка собственным автотранспортом со склада' },
+    { id: 'region-kaskelen', name: 'г. Каскелен', fullName: 'г. Каскелен', area: 'Алматинская область', x: 12, y: 58, type: 'region' as const, desc: 'Карасайский район, верхняя и нижняя трассы, снабжение магазинов и рынков' },
+    { id: 'region-talgar', name: 'г. Талгар', fullName: 'г. Талгар', area: 'Алматинская область', x: 75, y: 54, type: 'region' as const, desc: 'Талгарский тракт, доставка в розничные магазины и оптовые точки города' },
+    { id: 'region-esik', name: 'г. Есик', fullName: 'г. Есик', area: 'Алматинская область', x: 86, y: 60, type: 'region' as const, desc: 'Енбекшиказахский район, восточный маршрут по Кульджинскому и Талгарскому трактам' },
+    { id: 'region-shelek', name: 'с. Шелек', fullName: 'с. Шелек', area: 'Алматинская область', x: 91, y: 42, type: 'region' as const, desc: 'Восточное направление по Кульджинскому тракту, регулярные поставки' },
   ];
 
   const visiblePoints = points.filter((p) => {
@@ -53,7 +53,7 @@ export default function CoverageMap() {
       : points.find((p) => p.id === selectedPoint) || hub;
 
   const handleWhatsAppDelivery = () => {
-    const pointName = activeData.name;
+    const pointName = 'fullName' in activeData ? activeData.fullName : activeData.name;
     window.open(
       'https://wa.me/77078233422?text=' +
         encodeURIComponent(`Здравствуйте! Интересует поставка кондитерских изделий (${pointName}).`),
@@ -65,9 +65,9 @@ export default function CoverageMap() {
     <section className={styles.section} id="coverage">
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Склад в Алматы и карта доставки</h2>
+          <h2 className={styles.title}>Склад в Алматы и география доставки</h2>
           <p className={styles.subtitle}>
-            База и склад расположены на ул. Черноморская, 12. Отгружаем заказы самовывозом и доставляем собственным автотранспортом по районам Алматы и населенным пунктам области.
+            База и склад расположены на ул. Черноморская, 12. Отгружаем заказы самовывозом и доставляем собственным автотранспортом по всем районам Алматы и населенным пунктам области.
           </p>
 
           <div className={styles.filterBar} role="group" aria-label="Фильтр территории доставки">
@@ -99,7 +99,7 @@ export default function CoverageMap() {
         </div>
 
         <div className={styles.contentGrid}>
-          {/* Visual Map Canvas */}
+          {/* Visual Map Canvas + Quick Selector */}
           <div className={styles.mapCard}>
             <div className={styles.mapLegend}>
               <div className={styles.legendItem}>
@@ -108,43 +108,64 @@ export default function CoverageMap() {
               </div>
               <div className={styles.legendItem}>
                 <span className={styles.legendStarDot}>★</span>
-                <span>Районы и направления доставки</span>
+                <span>Районы Алматы и города области</span>
               </div>
             </div>
 
             <div className={styles.mapCanvasWrapper}>
               <svg className={styles.mapSvgBg} viewBox="0 0 100 80" preserveAspectRatio="none" aria-hidden="true">
                 <defs>
-                  <radialGradient id="almatyGlow" cx="48%" cy="50%" r="42%">
-                    <stop offset="0%" stopColor="#be8b4d" stopOpacity="0.16" />
-                    <stop offset="60%" stopColor="#643831" stopOpacity="0.05" />
+                  <radialGradient id="almatyGlow" cx="46%" cy="48%" r="40%">
+                    <stop offset="0%" stopColor="#be8b4d" stopOpacity="0.18" />
+                    <stop offset="65%" stopColor="#643831" stopOpacity="0.05" />
                     <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
                   </radialGradient>
                 </defs>
                 <rect width="100" height="80" fill="url(#almatyGlow)" />
-                {/* Ring road / highway contours */}
+
+                {/* Almaty City Boundary Contour */}
                 <ellipse
                   cx="45"
                   cy="49"
-                  rx="20"
-                  ry="16"
-                  fill="none"
-                  stroke="rgba(100, 56, 49, 0.1)"
-                  strokeWidth="0.6"
+                  rx="22"
+                  ry="21"
+                  fill="rgba(190, 139, 77, 0.04)"
+                  stroke="rgba(100, 56, 49, 0.14)"
+                  strokeWidth="0.5"
                   strokeDasharray="2,1.5"
                 />
+
+                {/* BAKAD / Northern Ring & Highway axes */}
                 <path
-                  d="M6,62 L48,44 L94,48"
+                  d="M12,58 Q26,22 48,14 Q68,18 91,42"
                   fill="none"
-                  stroke="rgba(100, 56, 49, 0.1)"
+                  stroke="rgba(100, 56, 49, 0.12)"
+                  strokeWidth="0.6"
+                  strokeDasharray="2.5,2"
+                />
+                {/* East-West Rayimbek / Tole Bi / Kultdzhinsky Axis */}
+                <path
+                  d="M12,58 L48,40 L91,42"
+                  fill="none"
+                  stroke="rgba(100, 56, 49, 0.12)"
                   strokeWidth="0.7"
                 />
+                {/* North A3 Konaev Highway */}
                 <path
-                  d="M48,44 L72,16"
+                  d="M48,40 L67,11"
                   fill="none"
-                  stroke="rgba(100, 56, 49, 0.1)"
+                  stroke="rgba(100, 56, 49, 0.12)"
                   strokeWidth="0.7"
                 />
+                {/* Southern Zailiyskiy Alatau foothills contour */}
+                <path
+                  d="M8,76 L22,71 L35,75 L50,69 L66,74 L82,68 L96,75"
+                  fill="none"
+                  stroke="rgba(100, 56, 49, 0.15)"
+                  strokeWidth="0.8"
+                />
+
+                {/* Radial delivery vectors from Chernomorskaya 12 hub */}
                 {visiblePoints.map((p) => (
                   <line
                     key={`line-${p.id}`}
@@ -152,8 +173,8 @@ export default function CoverageMap() {
                     y1={hub.y}
                     x2={p.x}
                     y2={p.y}
-                    stroke="rgba(190, 139, 77, 0.25)"
-                    strokeWidth="0.5"
+                    stroke="rgba(190, 139, 77, 0.28)"
+                    strokeWidth="0.45"
                     strokeDasharray="1.5,1.5"
                   />
                 ))}
@@ -169,7 +190,7 @@ export default function CoverageMap() {
               >
                 <span className={styles.hubBeacon} />
                 <span className={styles.hubIconBox}>
-                  <Warehouse size={16} />
+                  <Warehouse size={15} />
                 </span>
                 <span className={styles.hubLabel}>Склад: Черноморская, 12</span>
               </button>
@@ -184,7 +205,7 @@ export default function CoverageMap() {
                     className={`${styles.markerStar} ${isSelected ? styles.markerStarActive : ''} ${pt.type === 'region' ? styles.markerRegion : ''}`}
                     style={{ left: `${pt.x}%`, top: `${pt.y}%` }}
                     onClick={() => setSelectedPoint(pt.id)}
-                    aria-label={pt.name}
+                    aria-label={pt.fullName}
                   >
                     <span className={styles.starGlyph}>★</span>
                     <span className={styles.starLabel}>{pt.name}</span>
@@ -193,8 +214,27 @@ export default function CoverageMap() {
               })}
             </div>
 
-            <div className={styles.mapFooterNote}>
-              <span>Выберите район или склад на схеме, чтобы посмотреть ориентиры доставки</span>
+            {/* Adaptive touch-friendly quick selector strip */}
+            <div className={styles.quickSelectWrap} role="group" aria-label="Быстрый выбор района или города">
+              <button
+                type="button"
+                aria-pressed={selectedPoint === 'hub'}
+                className={`${styles.quickChip} ${selectedPoint === 'hub' ? styles.quickChipActive : ''}`}
+                onClick={() => setSelectedPoint('hub')}
+              >
+                Склад (Черноморская, 12)
+              </button>
+              {visiblePoints.map((pt) => (
+                <button
+                  key={`chip-${pt.id}`}
+                  type="button"
+                  aria-pressed={selectedPoint === pt.id}
+                  className={`${styles.quickChip} ${selectedPoint === pt.id ? styles.quickChipActive : ''}`}
+                  onClick={() => setSelectedPoint(pt.id)}
+                >
+                  {pt.name}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -210,7 +250,9 @@ export default function CoverageMap() {
                   )}
                 </div>
                 <div>
-                  <h3 className={styles.pointName}>{activeData.name}</h3>
+                  <h3 className={styles.pointName}>
+                    {'fullName' in activeData ? activeData.fullName : activeData.name}
+                  </h3>
                   <span className={styles.pointAreaSub}>
                     {activeData.type === 'hub' ? hub.address : (activeData as typeof points[number]).area}
                   </span>
