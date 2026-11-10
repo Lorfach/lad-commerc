@@ -1,12 +1,12 @@
 .footer {
   background-color: var(--color-cocoa-deep);
   color: #ffffff;
-  padding: 68px 24px 36px;
+  padding: 72px 32px 40px;
   position: relative;
 }
 
 .container {
-  max-width: 1280px;
+  max-width: var(--container-max);
   margin: 0 auto;
 }
 
@@ -19,15 +19,15 @@
 
 .brandHeading {
   font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 800;
+  font-size: 23px;
+  font-weight: 700;
   color: #ffffff;
   margin-bottom: 12px;
 }
 
 .brandDesc {
   font-size: 14.5px;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.74);
   line-height: 1.6;
   max-width: 380px;
   margin-bottom: 20px;
@@ -35,15 +35,15 @@
 
 .requisitesBox {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.6;
-  border-left: 1px solid var(--color-gold);
+  border-left: 2px solid var(--color-gold);
   padding-left: 12px;
 }
 
 .colTitle {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 16.5px;
   font-weight: 700;
   color: var(--color-gold);
   margin-bottom: 18px;
@@ -95,7 +95,7 @@
   align-items: center;
   justify-content: space-between;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(255, 255, 255, 0.54);
   flex-wrap: wrap;
   gap: 16px;
 }
@@ -120,7 +120,7 @@
 
 @media (max-width: 768px) {
   .footer {
-    padding: 48px 16px 96px;
+    padding: 52px 20px 104px;
   }
 
   .bottomBar {

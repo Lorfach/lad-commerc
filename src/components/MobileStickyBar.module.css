@@ -4,35 +4,61 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: var(--color-surface);
-  border-top: 1px solid var(--color-border);
+  background-color: rgba(253, 249, 238, 0.96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--color-border-gold);
   padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
   z-index: 90;
-  box-shadow: 0 -4px 16px rgba(70, 37, 32, 0.08);
+  box-shadow: 0 -6px 20px rgba(70, 37, 32, 0.1);
 }
 
-.btnWhatsAppFull {
-  width: 100%;
+.stickyInner {
+  display: grid;
+  grid-template-columns: 0.9fr 1.35fr;
+  gap: 10px;
   max-width: 480px;
   margin: 0 auto;
-  background-color: #25d366;
-  color: #ffffff;
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 13px 20px;
-  font-size: 15px;
-  font-weight: 700;
-  display: flex;
+}
+
+.btnCallOutline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background-color: var(--color-surface);
+  color: var(--color-cocoa);
+  border: 1.5px solid var(--color-cocoa);
+  border-radius: var(--radius-pill);
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.btnCallOutline:hover {
+  background-color: var(--color-gold-light);
+}
+
+.btnWhatsAppGold {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  background-color: var(--color-gold);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.32);
+  box-shadow: var(--shadow-gold);
   transition: background-color var(--transition-fast);
 }
 
-.btnWhatsAppFull:hover {
-  background-color: #1fa851;
+.btnWhatsAppGold:hover {
+  background-color: var(--color-gold-hover);
 }
 
 @media (max-width: 768px) {

@@ -1,26 +1,26 @@
 .section {
-  padding: 72px 24px;
-  background-color: var(--color-ground);
+  padding: var(--section-py) 32px;
+  background-color: var(--color-ground-alt);
   border-bottom: 1px solid var(--color-border);
 }
 
 .container {
-  max-width: 1280px;
+  max-width: var(--container-max);
   margin: 0 auto;
 }
 
 .header {
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto 44px;
+  max-width: 760px;
+  margin: 0 auto 48px;
 }
 
 .title {
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
-  font-weight: 800;
+  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+  font-weight: 700;
   color: var(--color-ink);
-  line-height: 1.15;
+  line-height: 1.16;
   margin: 0 0 14px;
   letter-spacing: -0.015em;
 }
@@ -29,7 +29,7 @@
   font-size: 16.5px;
   color: var(--color-ink-secondary);
   line-height: 1.6;
-  margin: 0 auto 24px;
+  margin: 0 auto 28px;
 }
 
 .tabsNav {
@@ -58,7 +58,7 @@
 
 .tabBtn:hover {
   color: var(--color-ink);
-  background: rgba(190, 139, 77, 0.1);
+  background: var(--color-gold-light);
 }
 
 .tabBtn.tabBtnActive {
@@ -78,7 +78,7 @@
 @media (max-width: 1080px) {
   .factoryGrid {
     grid-template-columns: 1fr;
-    max-width: 720px;
+    max-width: 680px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -97,13 +97,13 @@
 }
 
 .factoryCard:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
   border-color: var(--color-border-gold);
 }
 
 .cardTop {
-  padding: 24px 24px 16px;
+  padding: 28px 28px 18px;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -119,18 +119,18 @@
 .logoWrap {
   background: var(--color-surface);
   padding: 5px 10px;
-  border-radius: 9px;
+  border-radius: 8px;
   border: 1px solid var(--color-border);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 46px;
-  min-width: 96px;
+  height: 44px;
+  min-width: 92px;
 }
 
 .factoryLogoImg {
-  max-height: 36px;
-  max-width: 116px;
+  max-height: 34px;
+  max-width: 112px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -141,42 +141,41 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background: var(--color-ground);
-  border: 1px solid var(--color-border);
-  padding: 4px 10px;
-  border-radius: 6px;
+  background: var(--color-gold-light);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
 }
 
 .locationIcon {
-  color: var(--color-gold);
+  color: var(--color-cocoa);
   flex-shrink: 0;
 }
 
 .factoryLocation {
   font-size: 12px;
-  color: var(--color-ink-secondary);
+  color: var(--color-cocoa-dark);
   font-weight: 600;
 }
 
 .factoryName {
   font-family: var(--font-display);
   font-size: 21px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--color-ink);
-  line-height: 1.22;
+  line-height: 1.24;
   margin: 0 0 8px;
 }
 
 .factoryDesc {
   font-size: 14px;
   color: var(--color-ink-secondary);
-  line-height: 1.5;
+  line-height: 1.55;
   margin: 0;
 }
 
 /* Gallery showcase */
 .gallerySection {
-  padding: 16px 24px 18px;
+  padding: 18px 28px;
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
 }
@@ -184,8 +183,8 @@
 .mainPhotoFrame {
   position: relative;
   width: 100%;
-  height: 210px;
-  background-color: #fbf8f1;
+  height: 206px;
+  background-color: var(--color-ground);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   overflow: hidden;
@@ -235,7 +234,7 @@
 }
 
 .thumbBtn {
-  background: #fbf8f1;
+  background: var(--color-ground);
   border: 1.5px solid var(--color-border);
   border-radius: 8px;
   width: 58px;
@@ -267,8 +266,8 @@
 }
 
 .flagshipsSection {
-  padding: 18px 24px;
-  background: #faf6ed;
+  padding: 20px 28px;
+  background: var(--color-ground);
   flex: 1;
 }
 
@@ -283,7 +282,7 @@
 .flagshipsGrid {
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 10px;
 }
 
 .flagshipItem {
@@ -308,7 +307,7 @@
 
 .flagshipTitle {
   font-size: 13.5px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-ink);
   line-height: 1.35;
 }
@@ -320,11 +319,12 @@
 }
 
 .cardBottom {
-  padding: 20px 24px 24px;
+  padding: 20px 28px 28px;
   background: var(--color-surface);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
+  border-top: 1px solid var(--color-border);
 }
 
 .formatsBox {
@@ -335,8 +335,8 @@
   color: var(--color-ink-secondary);
   line-height: 1.45;
   background: var(--color-ground);
-  padding: 10px 12px;
-  border-radius: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
 }
 
@@ -356,31 +356,31 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #25d366;
+  background-color: var(--color-gold);
   color: #ffffff;
   border: none;
-  border-radius: var(--radius-md);
-  padding: 13px 20px;
+  border-radius: var(--radius-pill);
+  padding: 14px 24px;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color var(--transition-fast), transform var(--transition-fast);
-  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.25);
+  box-shadow: var(--shadow-gold);
 }
 
 .btnWhatsAppFactory:hover {
-  background-color: #1fa851;
+  background-color: var(--color-gold-hover);
   transform: translateY(-1px);
 }
 
 .bottomNote {
   background: var(--color-surface);
   border: 1px solid var(--color-border-gold);
-  border-radius: var(--radius-md);
-  padding: 18px 22px;
+  border-radius: var(--radius-lg);
+  padding: 20px 26px;
   color: var(--color-ink-secondary);
   font-size: 14.5px;
-  line-height: 1.5;
+  line-height: 1.55;
   box-shadow: var(--shadow-sm);
 }
 
@@ -394,25 +394,33 @@
 
 @media (max-width: 640px) {
   .section {
-    padding: 52px 16px;
+    padding: var(--section-py-mobile) 20px;
+  }
+
+  .header {
+    margin-bottom: 32px;
   }
 
   .tabsNav {
     width: 100%;
-    border-radius: 14px;
-    padding: 4px;
-    gap: 4px;
+    border-radius: var(--radius-lg);
+    padding: 5px;
+    gap: 5px;
   }
 
   .tabBtn {
-    padding: 8px 12px;
-    font-size: 13.5px;
+    padding: 9px 10px;
+    font-size: 13px;
     flex: 1 1 calc(50% - 6px);
     text-align: center;
   }
 
   .cardTop {
-    padding: 20px 18px 14px;
+    padding: 20px 18px 16px;
+  }
+
+  .factoryName {
+    font-size: 19px;
   }
 
   .gallerySection {
@@ -420,7 +428,7 @@
   }
 
   .mainPhotoFrame {
-    height: 190px;
+    height: 185px;
   }
 
   .flagshipsSection {
@@ -428,6 +436,11 @@
   }
 
   .cardBottom {
-    padding: 18px 18px;
+    padding: 16px 18px 20px;
+  }
+
+  .bottomNote {
+    padding: 16px 18px;
+    font-size: 13.5px;
   }
 }
