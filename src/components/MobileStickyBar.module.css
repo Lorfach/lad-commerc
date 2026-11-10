@@ -4,46 +4,36 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: var(--color-surface);
-  border-top: 1px solid var(--color-border);
+  background-color: #ffffff;
+  border-top: 1px solid rgba(100, 56, 49, 0.12);
   padding: 10px 16px;
   z-index: 90;
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
 }
 
-.buttons {
-  display: flex;
-  gap: 12px;
+.btnWhatsAppFull {
+  width: 100%;
   max-width: 480px;
   margin: 0 auto;
-}
-
-.btnPrice {
-  flex: 1;
-  background-color: var(--color-gold);
+  background-color: #25d366;
   color: #ffffff;
   border: none;
-  border-radius: var(--radius-sm);
-  padding: 12px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.btnWhatsApp {
-  flex: 1;
-  background-color: #25D366;
-  color: #ffffff;
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: 12px;
-  font-size: 14px;
+  border-radius: 12px;
+  padding: 13px 20px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 15px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btnWhatsAppFull:hover {
+  background-color: #1fa851;
 }
 
 @media (max-width: 768px) {

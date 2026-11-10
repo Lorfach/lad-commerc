@@ -242,29 +242,29 @@
   display: flex;
 }
 
-.btnCalculate {
+.btnWhatsAppFactory {
   width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #643831;
+  background-color: #25d366;
   color: #ffffff;
   border: none;
   border-radius: 12px;
-  padding: 14px 20px;
+  padding: 13px 20px;
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 3px 10px rgba(100, 56, 49, 0.15);
+  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.25);
 }
 
-.btnCalculate:hover {
-  background-color: #4a2620;
+.btnWhatsAppFactory:hover {
+  background-color: #1fa851;
   transform: translateY(-1px);
-  box-shadow: 0 5px 16px rgba(100, 56, 49, 0.25);
+  box-shadow: 0 5px 16px rgba(37, 211, 102, 0.35);
 }
 
 .bottomNote {

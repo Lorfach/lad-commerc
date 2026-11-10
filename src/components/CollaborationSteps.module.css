@@ -109,22 +109,27 @@
 }
 
 .btnPrimary {
-  background-color: var(--color-gold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #25d366;
   color: #ffffff;
   font-size: 16px;
   font-weight: 700;
   padding: 14px 28px;
-  border-radius: var(--radius-sm);
+  border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all 0.2s ease;
   white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
 .btnPrimary:hover {
-  background-color: var(--color-gold-hover);
+  background-color: #1fa851;
   transform: translateY(-2px);
-  box-shadow: var(--shadow-gold);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
 }
 
 @media (max-width: 1024px) {

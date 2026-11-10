@@ -2,12 +2,9 @@
 
 import React from 'react';
 import styles from './CollaborationSteps.module.css';
+import { MessageCircle } from 'lucide-react';
 
-interface CollaborationStepsProps {
-  onOpenInquiry: () => void;
-}
-
-export default function CollaborationSteps({ onOpenInquiry }: CollaborationStepsProps) {
+export default function CollaborationSteps() {
   const steps = [
     {
       step: '1',
@@ -31,6 +28,14 @@ export default function CollaborationSteps({ onOpenInquiry }: CollaborationSteps
     },
   ];
 
+  const handleWhatsApp = () => {
+    window.open(
+      'https://wa.me/77078233422?text=' +
+        encodeURIComponent('Здравствуйте! Интересуют условия поставок кондитерских изделий ТОО Лад Коммерц.'),
+      '_blank'
+    );
+  };
+
   return (
     <section className={styles.section} id="process">
       <div className={styles.container}>
@@ -53,15 +58,16 @@ export default function CollaborationSteps({ onOpenInquiry }: CollaborationSteps
 
         <div className={styles.ctaBox}>
           <div className={styles.ctaText}>
-            <h3>Узнать условия поставок под ваш объем</h3>
-            <p>Оставьте контакты — перезвоним в рабочее время склада, ответим на вопросы и рассчитаем цены.</p>
+            <h3>Связаться с нами в WhatsApp</h3>
+            <p>Напишите нам по номеру +7 (707) 823-34-22 — ответим на вопросы и согласуем условия под вашу точку.</p>
           </div>
           <button
             type="button"
             className={styles.btnPrimary}
-            onClick={onOpenInquiry}
+            onClick={handleWhatsApp}
           >
-            Рассчитать условия
+            <MessageCircle size={18} />
+            <span>Перейти в WhatsApp</span>
           </button>
         </div>
       </div>

@@ -2,20 +2,24 @@
 
 import React, { useState } from 'react';
 import styles from './FactoryPartners.module.css';
-import { Package, ArrowRight } from 'lucide-react';
+import { Package, MessageCircle } from 'lucide-react';
 
-interface FactoryPartnersProps {
-  onSelectFactory: (factoryName: string) => void;
-}
-
-export default function FactoryPartners({ onSelectFactory }: FactoryPartnersProps) {
+export default function FactoryPartners() {
   const [activeTab, setActiveTab] = useState<'all' | 'alyoshina' | 'chernogorsk' | 'tomsk'>('all');
+
+  const handleWhatsAppFactory = (factoryName: string) => {
+    window.open(
+      'https://wa.me/77078233422?text=' +
+        encodeURIComponent(`Здравствуйте! Интересует продукция фабрики «${factoryName}» в ТОО Лад Коммерц.`),
+      '_blank'
+    );
+  };
 
   const factories = [
     {
       id: 'alyoshina',
       code: 'alyoshina',
-      name: 'Кондитерская фабрика «Завод АлёшинА»',
+      name: '«Завод АлёшинА»',
       location: 'Сибирь • Поставки с завода',
       tagline: 'Соломка, хворост, сушки и глазированные сладости',
       description:
@@ -152,11 +156,11 @@ export default function FactoryPartners({ onSelectFactory }: FactoryPartnersProp
                 <div className={styles.actionRow}>
                   <button
                     type="button"
-                    className={styles.btnCalculate}
-                    onClick={() => onSelectFactory(factory.name)}
+                    className={styles.btnWhatsAppFactory}
+                    onClick={() => handleWhatsAppFactory(factory.name)}
                   >
-                    <span>Узнать условия поставок</span>
-                    <ArrowRight size={16} />
+                    <MessageCircle size={17} />
+                    <span>Перейти в WhatsApp</span>
                   </button>
                 </div>
               </div>
@@ -166,7 +170,7 @@ export default function FactoryPartners({ onSelectFactory }: FactoryPartnersProp
 
         <div className={styles.bottomNote}>
           <p>
-            <strong>Цены и расчет:</strong> у розничных магазинов и оптовиков разные объемы и периодичность отгрузок, поэтому цены рассчитываются индивидуально. Свяжитесь с нами — назовем условия под ваш заказ.
+            <strong>Цены и условия:</strong> у розничных магазинов и оптовиков разные объемы и периодичность отгрузок, поэтому цены согласовываются индивидуально. Напишите нам в WhatsApp по номеру <strong>+7 (707) 823-34-22</strong> — ответим на все вопросы.
           </p>
         </div>
       </div>

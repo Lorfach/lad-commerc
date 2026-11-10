@@ -414,22 +414,23 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #be8b4d;
+  background-color: #25d366;
   color: #ffffff;
   border: none;
   border-radius: 12px;
   padding: 14px 20px;
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(190, 139, 77, 0.25);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
 .btnConnect:hover {
-  background-color: #a47337;
+  background-color: #1fa851;
   transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
 }
 
 .factsCard {

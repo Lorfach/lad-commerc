@@ -2,13 +2,9 @@
 
 import React, { useState } from 'react';
 import styles from './CoverageMap.module.css';
-import { MapPin, Star, Building2, Truck, Navigation, CheckCircle, Store, Warehouse } from 'lucide-react';
+import { MapPin, Star, Building2, Truck, Navigation, CheckCircle, Store, Warehouse, MessageCircle } from 'lucide-react';
 
-interface CoverageMapProps {
-  onConnectStore?: () => void;
-}
-
-export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
+export default function CoverageMap() {
   const [filter, setFilter] = useState<'all' | 'city' | 'region'>('all');
   const [selectedPoint, setSelectedPoint] = useState<string | null>('hub');
 
@@ -235,10 +231,16 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
                 <button
                   type="button"
                   className={styles.btnConnect}
-                  onClick={onConnectStore}
+                  onClick={() => {
+                    window.open(
+                      'https://wa.me/77078233422?text=' +
+                        encodeURIComponent('Здравствуйте! Интересует доставка кондитерских изделий на нашу торговую точку в Алматы/области.'),
+                      '_blank'
+                    );
+                  }}
                 >
-                  <Truck size={17} />
-                  <span>Подключить вашу точку</span>
+                  <MessageCircle size={18} />
+                  <span>Перейти в WhatsApp</span>
                 </button>
               </div>
             </div>
