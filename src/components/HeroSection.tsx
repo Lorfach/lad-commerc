@@ -85,7 +85,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Header Navigation Strip */}
+      {/* Fixed/Sticky Header Navigation Strip */}
       <div className={styles.headerStrip}>
         <header className={styles.headerNav}>
           <a href="#hero" className={styles.brandLogo}>
@@ -117,8 +117,8 @@ export default function HeroSection() {
                 <span className={styles.phoneNumber}>+7 (701) 713-97-38</span>
               </a>
               <a href="tel:+77078233422" className={styles.phoneLink}>
-                <span className={styles.phoneNumber}>+7 (707) 823-34-22</span>
                 <span className={styles.phoneWaBadge}>WhatsApp</span>
+                <span className={styles.phoneNumber}>+7 (707) 823-34-22</span>
               </a>
             </div>
 
@@ -198,87 +198,89 @@ export default function HeroSection() {
       </div>
 
       {/* Main Hero Container */}
-      <div className={styles.heroContainer}>
-        <div className={styles.heroContent}>
-          <div className={styles.editorialMetaRow}>
-            <span className={styles.editorialTag}>ТОО «Лад Коммерц» • Алматы</span>
-            <span className={styles.editorialDot}>•</span>
-            <span className={styles.editorialSubTag}>Склад: ул. Черноморская, 12</span>
-          </div>
-
-          <h1 className={styles.heroTitle}>
-            Дистрибьюция кондитерских изделий в Алматы и области
-          </h1>
-
-          <p className={styles.heroDescription}>
-            Прямые поставки с трех российских фабрик: <strong>«Завод АлёшинА»</strong>, <strong>«Черногорский Кондитер»</strong> и <strong>«Томский Кондитер»</strong>. Отгрузка с собственного температурного склада (+18°C) и доставка автотранспортом по торговым точкам.
-          </p>
-
-          <dl className={styles.heroSpecsList}>
-            <div className={styles.heroSpecItem}>
-              <dt className={styles.heroSpecTerm}>Формат работы</dt>
-              <dd className={styles.heroSpecValue}>Раздельные условия для розницы и оптовых баз</dd>
+      <div className={styles.heroBody}>
+        <div className={styles.heroContainer}>
+          <div className={styles.heroContent}>
+            <div className={styles.editorialMetaRow}>
+              <span className={styles.editorialTag}>ТОО «Лад Коммерц» • Алматы</span>
+              <span className={styles.editorialDot}>•</span>
+              <span className={styles.editorialSubTag}>Склад: ул. Черноморская, 12</span>
             </div>
-            <div className={styles.heroSpecItem}>
-              <dt className={styles.heroSpecTerm}>Документооборот</dt>
-              <dd className={styles.heroSpecValue}>НДС, ЭСФ, СНТ, сертификаты соответствия ЕАС</dd>
-            </div>
-          </dl>
 
-          {/* Primary & Outline Pill CTA Buttons per DESIGN.md */}
-          <div className={styles.heroActions}>
-            <button
-              type="button"
-              className={styles.btnPrimaryGold}
-              onClick={handleWhatsApp}
-            >
-              <span>Написать в WhatsApp</span>
-            </button>
+            <h1 className={styles.heroTitle}>
+              Дистрибьюция кондитерских изделий в Алматы и области
+            </h1>
 
-            <a href="#factories" className={styles.btnSecondaryOutline}>
-              Смотреть ассортимент
-            </a>
-          </div>
-        </div>
+            <p className={styles.heroDescription}>
+              Прямые поставки с трех российских фабрик: <strong>«Завод АлёшинА»</strong>, <strong>«Черногорский Кондитер»</strong> и <strong>«Томский Кондитер»</strong>. Отгрузка с собственного температурного склада (+18°C) и доставка автотранспортом по торговым точкам.
+            </p>
 
-        {/* Right visual showcase: Authentic 3 Partner Factories */}
-        <div className={styles.heroShowcase}>
-          <div className={styles.showcaseHeader}>
-            <span className={styles.showcaseHeaderTitle}>Продукция 3 фабрик на складе</span>
-            <a href="#factories" className={styles.showcaseHeaderLink}>
-              К каталогу →
-            </a>
-          </div>
-          <div className={styles.showcaseStack}>
-            {heroFactories.map((item) => (
-              <a key={item.name} href="#factories" className={styles.showcaseItem}>
-                <div className={styles.showcaseThumbWrap}>
-                  <img
-                    src={item.photo}
-                    alt={`Продукция фабрики ${item.name}`}
-                    width={88}
-                    height={72}
-                    className={styles.showcaseThumb}
-                  />
-                </div>
-                <div className={styles.showcaseMeta}>
-                  <div className={styles.showcaseTitleRow}>
-                    <span className={styles.showcaseFactoryName}>{item.name}</span>
-                    <span className={styles.showcaseOrigin}>{item.origin}</span>
-                  </div>
-                  <span className={styles.showcaseItems}>{item.items}</span>
-                </div>
-                <div className={styles.showcaseLogoBox}>
-                  <img
-                    src={item.logo}
-                    alt={`Логотип ${item.name}`}
-                    width={56}
-                    height={36}
-                    className={styles.showcaseLogo}
-                  />
-                </div>
+            <dl className={styles.heroSpecsList}>
+              <div className={styles.heroSpecItem}>
+                <dt className={styles.heroSpecTerm}>Формат работы</dt>
+                <dd className={styles.heroSpecValue}>Раздельные условия для розницы и оптовых баз</dd>
+              </div>
+              <div className={styles.heroSpecItem}>
+                <dt className={styles.heroSpecTerm}>Документооборот</dt>
+                <dd className={styles.heroSpecValue}>НДС, ЭСФ, СНТ, сертификаты соответствия ЕАС</dd>
+              </div>
+            </dl>
+
+            {/* Primary & Outline Pill CTA Buttons per DESIGN.md */}
+            <div className={styles.heroActions}>
+              <button
+                type="button"
+                className={styles.btnPrimaryGold}
+                onClick={handleWhatsApp}
+              >
+                <span>Написать в WhatsApp</span>
+              </button>
+
+              <a href="#factories" className={styles.btnSecondaryOutline}>
+                Смотреть ассортимент
               </a>
-            ))}
+            </div>
+          </div>
+
+          {/* Right visual showcase: Authentic 3 Partner Factories */}
+          <div className={styles.heroShowcase}>
+            <div className={styles.showcaseHeader}>
+              <span className={styles.showcaseHeaderTitle}>Продукция 3 фабрик на складе</span>
+              <a href="#factories" className={styles.showcaseHeaderLink}>
+                К каталогу →
+              </a>
+            </div>
+            <div className={styles.showcaseStack}>
+              {heroFactories.map((item) => (
+                <a key={item.name} href="#factories" className={styles.showcaseItem}>
+                  <div className={styles.showcaseThumbWrap}>
+                    <img
+                      src={item.photo}
+                      alt={`Продукция фабрики ${item.name}`}
+                      width={88}
+                      height={72}
+                      className={styles.showcaseThumb}
+                    />
+                  </div>
+                  <div className={styles.showcaseMeta}>
+                    <div className={styles.showcaseTitleRow}>
+                      <span className={styles.showcaseFactoryName}>{item.name}</span>
+                      <span className={styles.showcaseOrigin}>{item.origin}</span>
+                    </div>
+                    <span className={styles.showcaseItems}>{item.items}</span>
+                  </div>
+                  <div className={styles.showcaseLogoBox}>
+                    <img
+                      src={item.logo}
+                      alt={`Логотип ${item.name}`}
+                      width={56}
+                      height={36}
+                      className={styles.showcaseLogo}
+                    />
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -30,6 +30,7 @@
   justify-content: space-between;
   width: 100%;
   max-width: var(--container-max);
+  margin: 0 auto;
   flex-wrap: wrap;
   gap: 12px;
 }
@@ -51,31 +52,30 @@
   font-size: 12.5px;
 }
 
-/* Header strip */
+/* Header strip — aligned to exact 1200px container grid on desktop, always fixed on mobile */
 .headerStrip {
   position: sticky;
   top: 0;
   border-bottom: 1px solid var(--color-border);
   width: 100%;
-  min-height: 72px;
+  min-height: 74px;
+  padding: 0 32px;
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  z-index: 80;
+  z-index: 95;
   background: rgba(253, 249, 238, 0.96);
   backdrop-filter: blur(8px);
 }
 
 .headerNav {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 32px;
-  box-sizing: border-box;
-  gap: 20px;
+  gap: 24px;
 }
 
 .brandLogo {
@@ -84,6 +84,7 @@
   text-decoration: none;
   border-left: 3px solid var(--color-gold);
   padding-left: 12px;
+  justify-self: start;
 }
 
 .brandText {
@@ -104,6 +105,7 @@
   color: var(--color-ink);
   letter-spacing: 0.02em;
   line-height: 1.1;
+  white-space: nowrap;
 }
 
 .brandSinceBadge {
@@ -114,6 +116,7 @@
   padding: 2px 8px;
   border-radius: var(--radius-pill);
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .brandSub {
@@ -122,17 +125,20 @@
   color: var(--color-ink-muted);
   letter-spacing: 0.04em;
   margin-top: 3px;
+  white-space: nowrap;
 }
 
 .navMenu {
   display: flex;
   align-items: center;
+  justify-self: center;
 }
 
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 26px;
+  justify-content: center;
+  gap: 28px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -143,6 +149,7 @@
   font-weight: 600;
   color: var(--color-ink-secondary);
   text-decoration: none;
+  white-space: nowrap;
   transition: color var(--transition-fast);
 }
 
@@ -153,6 +160,7 @@
 .headerRight {
   display: flex;
   align-items: center;
+  justify-self: end;
   gap: 14px;
 }
 
@@ -160,17 +168,19 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 3px;
+  gap: 4px;
 }
 
 .phoneLink {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: flex-end;
+  gap: 7px;
   font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
   text-decoration: none;
+  white-space: nowrap;
   transition: color var(--transition-fast);
 }
 
@@ -185,17 +195,18 @@
 
 .phoneNumber {
   color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
 }
 
 .phoneWaBadge {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 600;
   color: var(--color-cocoa-dark);
   background: var(--color-gold-light);
   border: 1px solid var(--color-border-gold);
-  padding: 1px 8px;
+  padding: 1px 7px;
   border-radius: var(--radius-pill);
-  margin-left: 2px;
+  line-height: 1.3;
 }
 
 /* Mobile Dropdown Menu (<= 1024px) */
@@ -268,7 +279,7 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   padding: 14px;
-  z-index: 100;
+  z-index: 110;
   animation: dropdownFadeIn 160ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -353,23 +364,17 @@
   margin-top: 2px;
 }
 
-@media (max-width: 1024px) {
-  .navMenu {
-    display: none;
-  }
-
-  .mobileMenuContainer {
-    display: inline-flex;
-  }
+/* Hero body — outer padding matches topStrip, headerStrip, and all sections */
+.heroBody {
+  width: 100%;
+  padding: 64px 32px 72px;
+  box-sizing: border-box;
 }
 
-/* Hero body */
 .heroContainer {
   width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 64px 32px 72px;
-  box-sizing: border-box;
   display: grid;
   grid-template-columns: 1.12fr 0.88fr;
   gap: 48px;
@@ -433,7 +438,7 @@
   font-weight: 600;
 }
 
-/* Editorial Specification List (replaces AI 3-icon-box grid) */
+/* Editorial Specification List */
 .heroSpecsList {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -661,10 +666,54 @@
   display: block;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1120px) {
+  .navLinks {
+    gap: 18px;
+  }
+
+  .navLink {
+    font-size: 13.5px;
+  }
+}
+
+/* Tablet & Mobile: Topbar is ALWAYS pinned (position: fixed) */
+@media (max-width: 1024px) {
+  .heroWrapper {
+    padding-top: 62px;
+  }
+
+  .headerStrip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 62px;
+    height: 62px;
+    padding: 0 20px;
+    box-shadow: 0 2px 12px rgba(70, 37, 32, 0.08);
+  }
+
+  .headerNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .navMenu {
+    display: none;
+  }
+
+  .mobileMenuContainer {
+    display: inline-flex;
+  }
+
+  .heroBody {
+    padding: 40px 24px 52px;
+  }
+
   .heroContainer {
     grid-template-columns: 1fr;
-    padding: 40px 24px 52px;
     gap: 32px;
   }
 }
@@ -677,15 +726,6 @@
 
   .topSchedule {
     display: none;
-  }
-
-  .headerStrip {
-    min-height: 62px;
-  }
-
-  .headerNav {
-    padding: 8px 20px;
-    gap: 12px;
   }
 
   .headerPhones {
@@ -702,8 +742,11 @@
 }
 
 @media (max-width: 640px) {
-  .heroContainer {
+  .heroBody {
     padding: 28px 20px 44px;
+  }
+
+  .heroContainer {
     gap: 24px;
   }
 

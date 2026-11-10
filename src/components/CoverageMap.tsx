@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import styles from './CoverageMap.module.css';
 import { MapPin, Warehouse, Store, MessageCircle, ExternalLink, Navigation } from 'lucide-react';
 
@@ -16,38 +16,45 @@ interface DeliveryPoint {
   desc: string;
 }
 
+declare global {
+  interface Window {
+    ymaps?: any;
+  }
+}
+
+// Verified exact coordinates of Chernomorskaya 12, Zhetysu district, Almaty (Yandex Maps / 2GIS)
 const HUB = {
   id: 'hub',
   name: 'Центральный склад ТОО «Лад Коммерц»',
   address: 'г. Алматы, ул. Черноморская, д. 12',
   type: 'hub' as const,
-  lat: 43.3013,
-  lon: 76.9385,
-  zoom: 15,
+  lat: 43.284794,
+  lon: 76.935269,
+  zoom: 16,
   description:
-    'Собственный складской комплекс с температурным режимом +18°C, удобным подъездом с пр. Рыскулова для грузового транспорта и зоной самовывоза.',
+    'Собственный складской комплекс с температурным режимом +18°C, удобным заездом с пр. Рыскулова и ул. Жансугурова для грузового транспорта и зоной самовывоза.',
 };
 
 const POINTS: DeliveryPoint[] = [
-  // Almaty Districts (real geographic coordinates)
+  // Almaty Districts (exact district centers)
   {
     id: 'almaty-zhetysu',
     name: 'Жетысуский р-н',
     fullName: 'Жетысуский район',
     area: 'г. Алматы',
-    lat: 43.2965,
-    lon: 76.924,
+    lat: 43.3015,
+    lon: 76.916,
     zoom: 13,
     type: 'city',
-    desc: 'Пр. Рыскулова, Северное кольцо, ул. Аэродромная, мкр. Кулагер, Айнабулак',
+    desc: 'Пр. Рыскулова, Северное кольцо, ул. Жансугурова, мкр. Кулагер, Айнабулак',
   },
   {
     id: 'almaty-turksib',
     name: 'Турксибский р-н',
     fullName: 'Турксибский район',
     area: 'г. Алматы',
-    lat: 43.328,
-    lon: 76.965,
+    lat: 43.336,
+    lon: 76.973,
     zoom: 13,
     type: 'city',
     desc: 'Пр. Суюнбая, ул. Шолохова, Майлина, район вокзала Алматы-1, мкр. Жулдыз',
@@ -58,8 +65,8 @@ const POINTS: DeliveryPoint[] = [
     fullName: 'Алатауский район',
     area: 'г. Алматы',
     lat: 43.268,
-    lon: 76.825,
-    zoom: 12,
+    lon: 76.828,
+    zoom: 13,
     type: 'city',
     desc: 'Ул. Момышулы, пр. Райымбека, мкр. Саялы, Акбулак, Алгабас, Зердели',
   },
@@ -68,8 +75,8 @@ const POINTS: DeliveryPoint[] = [
     name: 'Алмалинский р-н',
     fullName: 'Алмалинский район',
     area: 'г. Алматы',
-    lat: 43.255,
-    lon: 76.928,
+    lat: 43.2555,
+    lon: 76.9285,
     zoom: 13,
     type: 'city',
     desc: 'Ул. Толе би, Гоголя, пр. Абылай хана, пр. Сейфуллина, Тастак',
@@ -79,8 +86,8 @@ const POINTS: DeliveryPoint[] = [
     name: 'Ауэзовский р-н',
     fullName: 'Ауэзовский район',
     area: 'г. Алматы',
-    lat: 43.228,
-    lon: 76.862,
+    lat: 43.2265,
+    lon: 76.8585,
     zoom: 13,
     type: 'city',
     desc: 'Ул. Шаляпина, Саина, пр. Улугбека, мкр. Аксай, Жетысу, Мамыр',
@@ -90,8 +97,8 @@ const POINTS: DeliveryPoint[] = [
     name: 'Медеуский р-н',
     fullName: 'Медеуский район',
     area: 'г. Алматы',
-    lat: 43.258,
-    lon: 76.968,
+    lat: 43.246,
+    lon: 76.959,
     zoom: 13,
     type: 'city',
     desc: 'Пр. Достык, Жибек Жолы, ул. Луганского, ВОАД, мкр. Самал, Думан',
@@ -101,8 +108,8 @@ const POINTS: DeliveryPoint[] = [
     name: 'Бостандыкский р-н',
     fullName: 'Бостандыкский район',
     area: 'г. Алматы',
-    lat: 43.218,
-    lon: 76.912,
+    lat: 43.2135,
+    lon: 76.9045,
     zoom: 13,
     type: 'city',
     desc: 'Ул. Розыбакиева, пр. Аль-Фараби, ул. Тимирязева, мкр. Орбита, Казахфильм',
@@ -112,8 +119,8 @@ const POINTS: DeliveryPoint[] = [
     name: 'Наурызбайский р-н',
     fullName: 'Наурызбайский район',
     area: 'г. Алматы',
-    lat: 43.205,
-    lon: 76.805,
+    lat: 43.2045,
+    lon: 76.8095,
     zoom: 13,
     type: 'city',
     desc: 'Пр. Абая, мкр. Калкаман, Акжар, Шугыла, Таусамалы',
@@ -125,8 +132,8 @@ const POINTS: DeliveryPoint[] = [
     name: 'г. Конаев',
     fullName: 'г. Конаев',
     area: 'Алматинская область',
-    lat: 43.864,
-    lon: 77.063,
+    lat: 43.8644,
+    lon: 77.0631,
     zoom: 12,
     type: 'region',
     desc: 'Северное направление по трассе А3, поставки партий по согласованию',
@@ -136,8 +143,8 @@ const POINTS: DeliveryPoint[] = [
     name: 'пос. Байсерке',
     fullName: 'пос. Байсерке',
     area: 'Алматинская область',
-    lat: 43.421,
-    lon: 77.039,
+    lat: 43.4214,
+    lon: 77.0392,
     zoom: 13,
     type: 'region',
     desc: 'Илийский район, снабжение продуктовых магазинов и торговых точек',
@@ -147,8 +154,8 @@ const POINTS: DeliveryPoint[] = [
     name: 'Отеген-Батыр',
     fullName: 'пос. Отеген-Батыр (ГРЭС)',
     area: 'Алматинская область',
-    lat: 43.371,
-    lon: 77.018,
+    lat: 43.3711,
+    lon: 77.0183,
     zoom: 13,
     type: 'region',
     desc: 'Илийский район (ГРЭС), доставка собственным автотранспортом со склада',
@@ -158,8 +165,8 @@ const POINTS: DeliveryPoint[] = [
     name: 'г. Каскелен',
     fullName: 'г. Каскелен',
     area: 'Алматинская область',
-    lat: 43.2,
-    lon: 76.625,
+    lat: 43.2003,
+    lon: 76.6253,
     zoom: 13,
     type: 'region',
     desc: 'Карасайский район, верхняя и нижняя трассы, снабжение магазинов и рынков',
@@ -169,8 +176,8 @@ const POINTS: DeliveryPoint[] = [
     name: 'г. Талгар',
     fullName: 'г. Талгар',
     area: 'Алматинская область',
-    lat: 43.303,
-    lon: 77.24,
+    lat: 43.3036,
+    lon: 77.2408,
     zoom: 13,
     type: 'region',
     desc: 'Талгарский тракт, доставка в розничные магазины и оптовые точки города',
@@ -180,9 +187,9 @@ const POINTS: DeliveryPoint[] = [
     name: 'г. Есик',
     fullName: 'г. Есик',
     area: 'Алматинская область',
-    lat: 43.355,
-    lon: 77.46,
-    zoom: 12,
+    lat: 43.3553,
+    lon: 77.4606,
+    zoom: 13,
     type: 'region',
     desc: 'Енбекшиказахский район, восточный маршрут по Кульджинскому и Талгарскому трактам',
   },
@@ -191,9 +198,9 @@ const POINTS: DeliveryPoint[] = [
     name: 'с. Шелек',
     fullName: 'с. Шелек',
     area: 'Алматинская область',
-    lat: 43.597,
-    lon: 78.251,
-    zoom: 11,
+    lat: 43.5972,
+    lon: 78.2514,
+    zoom: 12,
     type: 'region',
     desc: 'Восточное направление по Кульджинскому тракту, регулярные поставки',
   },
@@ -202,6 +209,14 @@ const POINTS: DeliveryPoint[] = [
 export default function CoverageMap() {
   const [filter, setFilter] = useState<'all' | 'city' | 'region'>('all');
   const [selectedPoint, setSelectedPoint] = useState<string>('hub');
+  const [viewMode, setViewMode] = useState<'point' | 'overview'>('point');
+  const [focusTrigger, setFocusTrigger] = useState<number>(0);
+  const [mapReady, setMapReady] = useState(false);
+  const [scriptFailed, setScriptFailed] = useState(false);
+
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<any>(null);
+  const placemarksRef = useRef<Map<string, any>>(new Map());
 
   const visiblePoints = useMemo(() => {
     return POINTS.filter((p) => {
@@ -216,41 +231,212 @@ export default function CoverageMap() {
       ? HUB
       : POINTS.find((p) => p.id === selectedPoint) || HUB;
 
-  // Build interactive Yandex Map Widget URL with real placemarks (pt)
-  const yandexMapUrl = useMemo(() => {
-    const hubPin = `${HUB.lon},${HUB.lat},pm2rdl`;
-    const districtPins = visiblePoints.map((pt) => {
-      const pinStyle = selectedPoint === pt.id ? 'pm2ywl' : 'pm2dol';
-      return `${pt.lon},${pt.lat},${pinStyle}`;
-    });
+  // 1. Load Yandex Maps JS API 2.1 and initialize interactive map instance
+  useEffect(() => {
+    let cancelled = false;
 
-    const allPins = [hubPin, ...districtPins].join('~');
+    const initMap = () => {
+      if (cancelled || !mapContainerRef.current || !window.ymaps) return;
+      if (mapInstanceRef.current) return;
 
-    let centerLon = activeData.lon;
-    let centerLat = activeData.lat;
-    let zoom = activeData.zoom;
+      window.ymaps.ready(() => {
+        if (cancelled || !mapContainerRef.current || mapInstanceRef.current) return;
 
-    // If user switched category filter while keeping 'hub' selected, show overview zoom for that filter
-    if (selectedPoint === 'hub' && filter === 'city') {
-      centerLon = 76.915;
-      centerLat = 43.265;
-      zoom = 11;
-    } else if (selectedPoint === 'hub' && filter === 'region') {
-      centerLon = 77.12;
-      centerLat = 43.38;
-      zoom = 9;
+        try {
+          const map = new window.ymaps.Map(
+            mapContainerRef.current,
+            {
+              center: [HUB.lat, HUB.lon],
+              zoom: 12,
+              controls: ['zoomControl', 'fullscreenControl'],
+            },
+            {
+              suppressMapOpenBlock: true,
+            }
+          );
+
+          map.behaviors.disable('scrollZoom');
+          mapInstanceRef.current = map;
+          setMapReady(true);
+        } catch {
+          setScriptFailed(true);
+        }
+      });
+    };
+
+    if (window.ymaps) {
+      initMap();
+    } else {
+      const existingScript = document.getElementById('yandex-maps-js-api') as HTMLScriptElement | null;
+      if (existingScript) {
+        existingScript.addEventListener('load', initMap);
+        existingScript.addEventListener('error', () => !cancelled && setScriptFailed(true));
+      } else {
+        const script = document.createElement('script');
+        script.id = 'yandex-maps-js-api';
+        script.src = 'https://api-maps.yandex.ru/2.1/?lang=ru_RU';
+        script.async = true;
+        script.onload = initMap;
+        script.onerror = () => {
+          if (!cancelled) setScriptFailed(true);
+        };
+        document.head.appendChild(script);
+      }
     }
 
-    return `https://yandex.kz/map-widget/v1/?ll=${centerLon}%2C${centerLat}&z=${zoom}&pt=${encodeURIComponent(
-      allPins
-    )}&lang=ru_RU`;
-  }, [visiblePoints, selectedPoint, activeData, filter]);
+    return () => {
+      cancelled = true;
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.destroy();
+        mapInstanceRef.current = null;
+      }
+    };
+  }, []);
 
-  const yandexDirectLink = `https://yandex.kz/maps/162/almaty/?ll=${activeData.lon}%2C${activeData.lat}&z=${activeData.zoom}&pt=${HUB.lon}%2C${HUB.lat}`;
+  // 2. Rebuild placemarks when filter changes
+  useEffect(() => {
+    const map = mapInstanceRef.current;
+    if (!mapReady || !map || !window.ymaps) return;
 
-  const handleFilterChange = (nextFilter: 'all' | 'city' | 'region') => {
+    map.geoObjects.removeAll();
+    placemarksRef.current.clear();
+
+    // Central Warehouse Placemark (Chernomorskaya 12)
+    const hubPlacemark = new window.ymaps.Placemark(
+      [HUB.lat, HUB.lon],
+      {
+        iconCaption: 'Склад: Черноморская, 12',
+        balloonContentHeader: '<strong>Центральный склад ТОО «Лад Коммерц»</strong>',
+        balloonContentBody: 'г. Алматы, ул. Черноморская, д. 12<br/>Температурный режим +18°C • Самовывоз и отгрузка',
+        balloonContentFooter: 'Пн–Пт: 09:00–18:00, Сб: 09:00–14:00',
+      },
+      {
+        preset: 'islands#redDotIconWithCaption',
+        balloonAutoPan: false,
+        zIndex: 1200,
+      }
+    );
+
+    hubPlacemark.events.add('click', () => {
+      setViewMode('point');
+      setSelectedPoint('hub');
+      setFocusTrigger((c) => c + 1);
+    });
+
+    map.geoObjects.add(hubPlacemark);
+    placemarksRef.current.set('hub', hubPlacemark);
+
+    // District & Regional Delivery Placemarks
+    visiblePoints.forEach((pt) => {
+      const pm = new window.ymaps.Placemark(
+        [pt.lat, pt.lon],
+        {
+          iconCaption: pt.name,
+          balloonContentHeader: `<strong>${pt.fullName}</strong>`,
+          balloonContentBody: `${pt.area}<br/>${pt.desc}`,
+          balloonContentFooter: 'Доставка со склада ул. Черноморская, 12',
+        },
+        {
+          preset: pt.type === 'city' ? 'islands#brownDotIconWithCaption' : 'islands#orangeDotIconWithCaption',
+          balloonAutoPan: false,
+          zIndex: 500,
+        }
+      );
+
+      pm.events.add('click', () => {
+        setViewMode('point');
+        setSelectedPoint(pt.id);
+        setFocusTrigger((c) => c + 1);
+      });
+
+      map.geoObjects.add(pm);
+      placemarksRef.current.set(pt.id, pm);
+    });
+  }, [filter, visiblePoints, mapReady]);
+
+  // 3. Synchronize active pin styling, camera zoom/center, and balloon popup
+  useEffect(() => {
+    const map = mapInstanceRef.current;
+    if (!mapReady || !map) return;
+
+    placemarksRef.current.forEach((pm, id) => {
+      if (id === 'hub') {
+        const isHubActive = selectedPoint === 'hub' && viewMode === 'point';
+        pm.options.set('preset', isHubActive ? 'islands#redIcon' : 'islands#redDotIconWithCaption');
+        pm.options.set('zIndex', 1200);
+      } else {
+        const pt = POINTS.find((item) => item.id === id);
+        const isActive = selectedPoint === id && viewMode === 'point';
+        if (isActive) {
+          pm.options.set('preset', 'islands#darkOrangeIcon');
+          pm.options.set('zIndex', 1100);
+        } else {
+          pm.options.set(
+            'preset',
+            pt?.type === 'city' ? 'islands#brownDotIconWithCaption' : 'islands#orangeDotIconWithCaption'
+          );
+          pm.options.set('zIndex', 500);
+        }
+      }
+    });
+
+    if (viewMode === 'overview') {
+      map.balloon.close();
+      if (filter === 'city') {
+        map.setCenter([43.265, 76.905], 11, { duration: 300, checkZoomRange: true });
+      } else if (filter === 'region') {
+        map.setCenter([43.42, 77.12], 9, { duration: 300, checkZoomRange: true });
+      } else {
+        map.setCenter([43.284794, 76.935269], 10, { duration: 300, checkZoomRange: true });
+      }
+    } else {
+      const promise = map.setCenter([activeData.lat, activeData.lon], activeData.zoom, {
+        duration: 300,
+        checkZoomRange: true,
+      });
+
+      const openActiveBalloon = () => {
+        const activePm = placemarksRef.current.get(selectedPoint);
+        if (activePm && activePm.balloon) {
+          activePm.balloon.open();
+        }
+      };
+
+      if (promise && typeof promise.then === 'function') {
+        promise.then(openActiveBalloon, openActiveBalloon);
+      } else {
+        setTimeout(openActiveBalloon, 320);
+      }
+    }
+  }, [selectedPoint, viewMode, filter, focusTrigger, activeData, mapReady]);
+
+  // Fallback iframe URL (only used if api-maps.yandex.ru is blocked)
+  const fallbackIframeUrl = useMemo(() => {
+    const lon = activeData.lon;
+    const lat = activeData.lat;
+    const zoom = viewMode === 'overview' ? (filter === 'region' ? 9 : 11) : activeData.zoom;
+    return `https://yandex.kz/map-widget/v1/?ll=${lon},${lat}&z=${zoom}&pt=${lon},${lat},pm2rdl&lang=ru_RU`;
+  }, [activeData, viewMode, filter]);
+
+  const yandexDirectLink = `https://yandex.kz/maps/162/almaty/?ll=${activeData.lon}%2C${activeData.lat}&z=${activeData.zoom}&pt=${activeData.lon}%2C${activeData.lat}`;
+
+  const handleSelectFilter = (nextFilter: 'all' | 'city' | 'region') => {
     setFilter(nextFilter);
-    setSelectedPoint('hub');
+    setViewMode('overview');
+    if (nextFilter === 'city') {
+      setSelectedPoint('almaty-zhetysu');
+    } else if (nextFilter === 'region') {
+      setSelectedPoint('region-talgar');
+    } else {
+      setSelectedPoint('hub');
+    }
+    setFocusTrigger((c) => c + 1);
+  };
+
+  const handleSelectChip = (id: string) => {
+    setViewMode('point');
+    setSelectedPoint(id);
+    setFocusTrigger((c) => c + 1);
   };
 
   const handleWhatsAppDelivery = () => {
@@ -268,23 +454,23 @@ export default function CoverageMap() {
         <div className={styles.header}>
           <h2 className={styles.title}>Склад в Алматы и география доставки</h2>
           <p className={styles.subtitle}>
-            База и температурный склад расположены по адресу: <strong>г. Алматы, ул. Черноморская, 12</strong>. Отгружаем заказы самовывозом и доставляем собственным автотранспортом по районам Алматы и населенным пунктам области.
+            База и температурный склад расположены по адресу: <strong>г. Алматы, ул. Черноморская, 12</strong> (Жетысуский р-н). Отгружаем заказы самовывозом и доставляем собственным автотранспортом по районам Алматы и населенным пунктам области.
           </p>
 
           <div className={styles.filterBar} role="group" aria-label="Режим отображения карты">
             <button
               type="button"
-              aria-pressed={filter === 'all' && selectedPoint === 'hub'}
+              aria-pressed={filter === 'all'}
               className={`${styles.filterBtn} ${filter === 'all' ? styles.filterBtnActive : ''}`}
-              onClick={() => handleFilterChange('all')}
+              onClick={() => handleSelectFilter('all')}
             >
-              Склад (Черноморская, 12)
+              Вся карта (Склад + 15 зон)
             </button>
             <button
               type="button"
               aria-pressed={filter === 'city'}
               className={`${styles.filterBtn} ${filter === 'city' ? styles.filterBtnActive : ''}`}
-              onClick={() => handleFilterChange('city')}
+              onClick={() => handleSelectFilter('city')}
             >
               Алматы (8 районов)
             </button>
@@ -292,7 +478,7 @@ export default function CoverageMap() {
               type="button"
               aria-pressed={filter === 'region'}
               className={`${styles.filterBtn} ${filter === 'region' ? styles.filterBtnActive : ''}`}
-              onClick={() => handleFilterChange('region')}
+              onClick={() => handleSelectFilter('region')}
             >
               Алматинская область (7 направлений)
             </button>
@@ -327,14 +513,29 @@ export default function CoverageMap() {
             </div>
 
             <div className={styles.mapCanvasWrapper}>
-              <iframe
-                key={yandexMapUrl}
-                src={yandexMapUrl}
-                title="Яндекс.Карта склада ТОО Лад Коммерц (ул. Черноморская, 12) и зон доставки"
-                className={styles.yandexIframe}
-                loading="lazy"
-                allowFullScreen
-              />
+              {!scriptFailed ? (
+                <>
+                  <div
+                    ref={mapContainerRef}
+                    className={styles.yandexMapContainer}
+                    aria-label="Интерактивная Яндекс.Карта склада ТОО Лад Коммерц и районов доставки"
+                  />
+                  {!mapReady && (
+                    <div className={styles.mapLoadingOverlay}>
+                      <span>Загрузка интерактивной Яндекс.Карты…</span>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <iframe
+                  key={fallbackIframeUrl}
+                  src={fallbackIframeUrl}
+                  title="Яндекс.Карта склада ТОО Лад Коммерц (ул. Черноморская, 12) и зон доставки"
+                  className={styles.yandexIframe}
+                  loading="lazy"
+                  allowFullScreen
+                />
+              )}
             </div>
 
             {/* Adaptive touch-friendly quick selector strip */}
@@ -343,7 +544,7 @@ export default function CoverageMap() {
                 type="button"
                 aria-pressed={selectedPoint === 'hub'}
                 className={`${styles.quickChip} ${selectedPoint === 'hub' ? styles.quickChipActive : ''}`}
-                onClick={() => setSelectedPoint('hub')}
+                onClick={() => handleSelectChip('hub')}
               >
                 Склад (Черноморская, 12)
               </button>
@@ -353,7 +554,7 @@ export default function CoverageMap() {
                   type="button"
                   aria-pressed={selectedPoint === pt.id}
                   className={`${styles.quickChip} ${selectedPoint === pt.id ? styles.quickChipActive : ''}`}
-                  onClick={() => setSelectedPoint(pt.id)}
+                  onClick={() => handleSelectChip(pt.id)}
                 >
                   {pt.name}
                 </button>
