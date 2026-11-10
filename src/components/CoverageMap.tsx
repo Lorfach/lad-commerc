@@ -2,43 +2,43 @@
 
 import React, { useState } from 'react';
 import styles from './CoverageMap.module.css';
-import { MapPin, Star, Building2, Truck, Navigation, CheckCircle, Store, Warehouse, MessageCircle } from 'lucide-react';
+import { MapPin, Star, Warehouse, Store, MessageCircle } from 'lucide-react';
 
 export default function CoverageMap() {
   const [filter, setFilter] = useState<'all' | 'city' | 'region'>('all');
   const [selectedPoint, setSelectedPoint] = useState<string | null>('hub');
 
-  // Hub: Chernomorskaya 12
+  // Central distribution hub: Chernomorskaya 12
   const hub = {
     id: 'hub',
     name: 'Центральный склад ТОО «Лад Коммерц»',
     address: 'г. Алматы, ул. Черноморская, д. 12',
-    type: 'hub',
+    type: 'hub' as const,
     x: 48,
     y: 44,
-    description: 'Складской комплекс с постоянным температурным режимом (+18°C), офис и зона комплектации заказов.',
+    description: 'Складской комплекс с климат-контролем (+18°C), офис и зона комплектации заказов.',
     status: 'База дистрибьюции',
   };
 
   const points = [
     // Almaty Districts
-    { id: 'almaty-zhetysu', name: 'Жетысуский район', area: 'Алматы', stores: '28 торговых точек', x: 49, y: 39, type: 'city', desc: 'Рыскулова, Северное кольцо, Аэродромная' },
-    { id: 'almaty-almaly', name: 'Алмалинский район', area: 'Алматы', stores: '34 торговых точки', x: 44, y: 52, type: 'city', desc: 'Толе би, Гоголя, Абылай хана, Сейфуллина' },
-    { id: 'almaty-medeu', name: 'Медеуский район', area: 'Алматы', stores: '22 торговые точки', x: 55, y: 55, type: 'city', desc: 'Достык, Жибек Жолы, Луганского, Самал' },
-    { id: 'almaty-bostandyk', name: 'Бостандыкский район', area: 'Алматы', stores: '31 торговая точка', x: 42, y: 62, type: 'city', desc: 'Розыбакиева, Аль-Фараби, Тимирязева' },
-    { id: 'almaty-auezov', name: 'Ауэзовский район', area: 'Алматы', stores: '26 торговых точек', x: 33, y: 54, type: 'city', desc: 'Шаляпина, Саина, мкр. 1–12, Улугбека' },
-    { id: 'almaty-turksib', name: 'Турксибский район', area: 'Алматы', stores: '19 торговых точек', x: 58, y: 32, type: 'city', desc: 'Суюнбая, Шолохова, Майлина, ж/д вокзал-1' },
-    { id: 'almaty-alatau', name: 'Алатауский район', area: 'Алматы', stores: '18 торговых точек', x: 34, y: 38, type: 'city', desc: 'Момышулы, Райымбека, мкр. Саялы, Алгабас' },
-    { id: 'almaty-nauryzbay', name: 'Наурызбайский район', area: 'Алматы', stores: '14 торговых точек', x: 26, y: 60, type: 'city', desc: 'Абая, Таусамалы, мкр. Калкаман' },
+    { id: 'almaty-zhetysu', name: 'Жетысуский район', area: 'Алматы', stores: '28 торговых точек', x: 49, y: 39, type: 'city' as const, desc: 'Рыскулова, Северное кольцо, Аэродромная' },
+    { id: 'almaty-almaly', name: 'Алмалинский район', area: 'Алматы', stores: '34 торговых точки', x: 44, y: 52, type: 'city' as const, desc: 'Толе би, Гоголя, Абылай хана, Сейфуллина' },
+    { id: 'almaty-medeu', name: 'Медеуский район', area: 'Алматы', stores: '22 торговые точки', x: 55, y: 55, type: 'city' as const, desc: 'Достык, Жибек Жолы, Луганского, Самал' },
+    { id: 'almaty-bostandyk', name: 'Бостандыкский район', area: 'Алматы', stores: '31 торговая точка', x: 42, y: 62, type: 'city' as const, desc: 'Розыбакиева, Аль-Фараби, Тимирязева' },
+    { id: 'almaty-auezov', name: 'Ауэзовский район', area: 'Алматы', stores: '26 торговых точек', x: 33, y: 54, type: 'city' as const, desc: 'Шаляпина, Саина, мкр. 1–12, Улугбека' },
+    { id: 'almaty-turksib', name: 'Турксибский район', area: 'Алматы', stores: '19 торговых точек', x: 58, y: 32, type: 'city' as const, desc: 'Суюнбая, Шолохова, Майлина, ж/д вокзал-1' },
+    { id: 'almaty-alatau', name: 'Алатауский район', area: 'Алматы', stores: '18 торговых точек', x: 34, y: 38, type: 'city' as const, desc: 'Момышулы, Райымбека, мкр. Саялы, Алгабас' },
+    { id: 'almaty-nauryzbay', name: 'Наурызбайский район', area: 'Алматы', stores: '14 торговых точек', x: 26, y: 60, type: 'city' as const, desc: 'Абая, Таусамалы, мкр. Калкаман' },
 
     // Almaty Oblast (Region)
-    { id: 'region-talgar', name: 'г. Талгар', area: 'Область', stores: '16 магазинов-партнеров', x: 74, y: 56, type: 'region', desc: 'Талгарский тракт, регулярный рейс по Вт и Пт' },
-    { id: 'region-kaskelen', name: 'г. Каскелен', area: 'Область', stores: '18 магазинов-партнеров', x: 16, y: 64, type: 'region', desc: 'Верхняя трасса, рейс по Пн и Чт' },
-    { id: 'region-konaev', name: 'г. Конаев (Капшагай)', area: 'Область', stores: '12 торговых точек', x: 72, y: 16, type: 'region', desc: 'Северное направление, поставки по согласованию' },
-    { id: 'region-otegen', name: 'пос. Отеген-Батыр (ГРЭС)', area: 'Область', stores: '15 торговых точек', x: 56, y: 22, type: 'region', desc: 'Илийский район, поставка в течение 24ч' },
-    { id: 'region-baiserke', name: 'пос. Байсерке', area: 'Область', stores: '9 торговых точек', x: 51, y: 15, type: 'region', desc: 'Илийский район, снабжение розницы' },
-    { id: 'region-esik', name: 'г. Есик', area: 'Область', stores: '11 магазинов-партнеров', x: 86, y: 62, type: 'region', desc: 'Енбекшиказахский район, восточный маршрут' },
-    { id: 'region-shelek', name: 'с. Шелек', area: 'Область', stores: '8 торговых точек', x: 92, y: 48, type: 'region', desc: 'Кульджинский тракт, поставка по графику' },
+    { id: 'region-talgar', name: 'г. Талгар', area: 'Область', stores: '16 магазинов-партнеров', x: 74, y: 56, type: 'region' as const, desc: 'Талгарский тракт, регулярный рейс по Вт и Пт' },
+    { id: 'region-kaskelen', name: 'г. Каскелен', area: 'Область', stores: '18 магазинов-партнеров', x: 16, y: 64, type: 'region' as const, desc: 'Верхняя трасса, рейс по Пн и Чт' },
+    { id: 'region-konaev', name: 'г. Конаев (Капшагай)', area: 'Область', stores: '12 торговых точек', x: 72, y: 16, type: 'region' as const, desc: 'Северное направление, поставки по согласованию' },
+    { id: 'region-otegen', name: 'пос. Отеген-Батыр (ГРЭС)', area: 'Область', stores: '15 торговых точек', x: 56, y: 22, type: 'region' as const, desc: 'Илийский район, поставка в течение 24ч' },
+    { id: 'region-baiserke', name: 'пос. Байсерке', area: 'Область', stores: '9 торговых точек', x: 51, y: 15, type: 'region' as const, desc: 'Илийский район, снабжение розницы' },
+    { id: 'region-esik', name: 'г. Есик', area: 'Область', stores: '11 магазинов-партнеров', x: 86, y: 62, type: 'region' as const, desc: 'Енбекшиказахский район, восточный маршрут' },
+    { id: 'region-shelek', name: 'с. Шелек', area: 'Область', stores: '8 торговых точек', x: 92, y: 48, type: 'region' as const, desc: 'Кульджинский тракт, поставка по графику' },
   ];
 
   const visiblePoints = points.filter((p) => {
@@ -47,9 +47,19 @@ export default function CoverageMap() {
     return true;
   });
 
-  const activeData = selectedPoint === 'hub'
-    ? hub
-    : points.find((p) => p.id === selectedPoint) || hub;
+  const activeData =
+    selectedPoint === 'hub'
+      ? hub
+      : points.find((p) => p.id === selectedPoint) || hub;
+
+  const handleWhatsAppDelivery = () => {
+    const pointName = activeData.name;
+    window.open(
+      'https://wa.me/77078233422?text=' +
+        encodeURIComponent(`Здравствуйте! Интересует доставка кондитерских изделий на нашу торговую точку (${pointName}).`),
+      '_blank'
+    );
+  };
 
   return (
     <section className={styles.section} id="coverage">
@@ -66,21 +76,21 @@ export default function CoverageMap() {
               className={`${styles.filterBtn} ${filter === 'all' ? styles.filterBtnActive : ''}`}
               onClick={() => setFilter('all')}
             >
-              Вся карта охвата
+              Вся карта
             </button>
             <button
               type="button"
               className={`${styles.filterBtn} ${filter === 'city' ? styles.filterBtnActive : ''}`}
               onClick={() => setFilter('city')}
             >
-              Районы Алматы (8 районов)
+              Алматы (8 районов)
             </button>
             <button
               type="button"
               className={`${styles.filterBtn} ${filter === 'region' ? styles.filterBtnActive : ''}`}
               onClick={() => setFilter('region')}
             >
-              Алматинская область
+              Алматинская область (7 направлений)
             </button>
           </div>
         </div>
@@ -231,36 +241,12 @@ export default function CoverageMap() {
                 <button
                   type="button"
                   className={styles.btnConnect}
-                  onClick={() => {
-                    window.open(
-                      'https://wa.me/77078233422?text=' +
-                        encodeURIComponent('Здравствуйте! Интересует доставка кондитерских изделий на нашу торговую точку в Алматы/области.'),
-                      '_blank'
-                    );
-                  }}
+                  onClick={handleWhatsAppDelivery}
                 >
                   <MessageCircle size={18} />
-                  <span>Перейти в WhatsApp</span>
+                  <span>Написать в WhatsApp</span>
                 </button>
               </div>
-            </div>
-
-            <div className={styles.factsCard}>
-              <h4 className={styles.factsTitle}>Параметры доставки:</h4>
-              <ul className={styles.factsList}>
-                <li>
-                  <CheckCircle size={15} className={styles.factCheck} />
-                  <span><strong>Сборка заказа:</strong> комплектация на ул. Черноморская, 12 день в день.</span>
-                </li>
-                <li>
-                  <CheckCircle size={15} className={styles.factCheck} />
-                  <span><strong>Свой транспорт:</strong> выгрузка на рампу склада или в зону приемки магазина.</span>
-                </li>
-                <li>
-                  <CheckCircle size={15} className={styles.factCheck} />
-                  <span><strong>Официальный пакет:</strong> работа с НДС, ЭСФ, накладные, сертификаты ЕАС.</span>
-                </li>
-              </ul>
             </div>
           </aside>
         </div>

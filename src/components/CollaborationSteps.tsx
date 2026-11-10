@@ -9,12 +9,12 @@ export default function CollaborationSteps() {
     {
       step: '1',
       title: 'Выбор позиций',
-      desc: 'Выбираете нужные позиции фабрик «Завод АлёшинА», «Черногорский Кондитер» и «Томский Кондитер» под ваши витрины или склад.',
+      desc: 'Выбираете продукцию фабрик «Завод АлёшинА», «Черногорский Кондитер» и «Томский Кондитер» под вашу матрицу.',
     },
     {
       step: '2',
       title: 'Расчет условий',
-      desc: 'Менеджер рассчитывает цены под ваш объем партии, согласует график отгрузок и условия оплаты.',
+      desc: 'Согласуем цены под ваш объем партии, график регулярных отгрузок и условия оплаты.',
     },
     {
       step: '3',
@@ -23,8 +23,8 @@ export default function CollaborationSteps() {
     },
     {
       step: '4',
-      title: 'Отгрузка или доставка',
-      desc: 'Собираем заказ на Черноморской, 12 за 24 часа. Забираете самовывозом со склада или привозим нашим транспортом.',
+      title: 'Отгрузка и доставка',
+      desc: 'Комплектуем заказ на Черноморской, 12 за 24 часа. Самовывоз со склада или доставка нашим транспортом.',
     },
   ];
 
@@ -42,7 +42,7 @@ export default function CollaborationSteps() {
         <div className={styles.header}>
           <h2 className={styles.title}>Порядок работы</h2>
           <p className={styles.subtitle}>
-            От первой заявки до отгрузки со склада в Алматы — 4 простых шага.
+            От заявки до отгрузки со склада в Алматы.
           </p>
         </div>
 
@@ -58,8 +58,8 @@ export default function CollaborationSteps() {
 
         <div className={styles.ctaBox}>
           <div className={styles.ctaText}>
-            <h3>Связаться с нами в WhatsApp</h3>
-            <p>Напишите нам по номеру +7 (707) 823-34-22 — ответим на вопросы и согласуем условия под вашу точку.</p>
+            <h3>Запросить условия в WhatsApp</h3>
+            <p>Напишите нам по номеру +7 (707) 823-34-22 — согласуем условия под вашу точку.</p>
           </div>
           <button
             type="button"
@@ -67,7 +67,7 @@ export default function CollaborationSteps() {
             onClick={handleWhatsApp}
           >
             <MessageCircle size={18} />
-            <span>Перейти в WhatsApp</span>
+            <span>Написать в WhatsApp</span>
           </button>
         </div>
       </div>

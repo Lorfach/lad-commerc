@@ -230,7 +230,7 @@ function FactoryCardItem({
             onClick={() => onWhatsApp(factory.name)}
           >
             <MessageCircle size={17} />
-            <span>Перейти в WhatsApp</span>
+            <span>Написать в WhatsApp</span>
           </button>
         </div>
       </div>
@@ -305,7 +305,7 @@ export default function FactoryPartners() {
 
         <div className={styles.bottomNote}>
           <p>
-            <strong>Цены и условия:</strong> у розничных магазинов и оптовиков разные объемы и периодичность отгрузок, поэтому цены согласовываются индивидуально. Напишите нам в WhatsApp по номеру <strong>+7 (707) 823-34-22</strong> — ответим на все вопросы.
+            <strong>Коммерческие условия:</strong> розничным магазинам и оптовым складам предоставляем раздельные условия с учетом объема и регулярности поставок. Напишите нам в WhatsApp по номеру <strong>+7 (707) 823-34-22</strong> — согласуем условия под вашу точку.
           </p>
         </div>
       </div>

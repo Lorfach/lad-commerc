@@ -37,11 +37,11 @@ export default function ContactsFooter() {
                 <div>
                   <strong>Телефоны:</strong>
                   <br />
-                  <a href="tel:+77017139738" style={{ color: '#fff', textDecoration: 'underline' }}>
+                  <a href="tel:+77017139738" className={styles.footerPhoneLink}>
                     +7 (701) 713-97-38 (Kcell)
                   </a>
                   <br />
-                  <a href="tel:+77078233422" style={{ color: '#fff', textDecoration: 'underline' }}>
+                  <a href="tel:+77078233422" className={styles.footerPhoneLink}>
                     +7 (707) 823-34-22 (Tele2, WhatsApp)
                   </a>
                 </div>

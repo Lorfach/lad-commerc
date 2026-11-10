@@ -79,7 +79,7 @@ export default function AboutCompany() {
 
             <div className={styles.detailRow}>
               <span className={styles.detailLabel}>Режим работы:</span>
-              <span className={styles.detailValue}>Понедельник – Суббота, 09:00 – 18:00</span>
+              <span className={styles.detailValue}>Пн – Пт: 09:00 – 18:00, Сб: 09:00 – 14:00 (Вс: выходной)</span>
             </div>
           </div>
         </div>
