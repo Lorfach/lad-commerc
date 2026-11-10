@@ -241,18 +241,38 @@ export default function CoverageMap() {
       ? HUB
       : POINTS.find((p) => p.id === selectedPoint) || HUB;
 
-  // Handle Escape key & body scroll lock when map is in controlled fullscreen mode
+  // Synchronize Yandex Map viewport size when entering or exiting fullscreen
   useEffect(() => {
-    const map = mapInstanceRef.current;
-    if (map && map.container) {
-      map.container.fitToViewport();
-      const t1 = setTimeout(() => map.container.fitToViewport(), 40);
-      const t2 = setTimeout(() => map.container.fitToViewport(), 180);
-      return () => {
-        clearTimeout(t1);
-        clearTimeout(t2);
-      };
+    const syncViewport = () => {
+      const map = mapInstanceRef.current;
+      if (map && map.container) {
+        map.container.fitToViewport();
+        if (viewMode === 'point') {
+          map.setCenter([activeData.lat, activeData.lon], activeData.zoom, {
+            duration: 0,
+            checkZoomRange: true,
+          });
+        }
+      }
+    };
+
+    syncViewport();
+    const rafId = window.requestAnimationFrame(syncViewport);
+    const t1 = setTimeout(syncViewport, 50);
+    const t2 = setTimeout(syncViewport, 200);
+
+    if (isFullscreen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      document.body.style.overflow = '';
+    };
   }, [isFullscreen]);
 
   useEffect(() => {
@@ -363,6 +383,7 @@ export default function CoverageMap() {
       {
         preset: 'islands#redDotIconWithCaption',
         balloonAutoPan: false,
+        balloonMaxWidth: 260,
         zIndex: 1200,
       }
     );
@@ -389,6 +410,7 @@ export default function CoverageMap() {
         {
           preset: pt.type === 'city' ? 'islands#brownDotIconWithCaption' : 'islands#orangeDotIconWithCaption',
           balloonAutoPan: false,
+          balloonMaxWidth: 260,
           zIndex: 500,
         }
       );
@@ -467,6 +489,14 @@ export default function CoverageMap() {
     const zoom = viewMode === 'overview' ? (filter === 'region' ? 9 : 11) : activeData.zoom;
     return `https://yandex.kz/map-widget/v1/?ll=${lon},${lat}&z=${zoom}&pt=${lon},${lat},pm2rdl&lang=ru_RU`;
   }, [activeData, viewMode, filter]);
+
+  const twoGisDirectLink = useMemo(() => {
+    const searchQuery =
+      selectedPoint === 'hub'
+        ? 'Алматы, ул. Черноморская, 12'
+        : `${(activeData as DeliveryPoint).area}, ${(activeData as DeliveryPoint).fullName}`;
+    return `https://2gis.kz/almaty/search/${encodeURIComponent(searchQuery)}?m=${activeData.lon}%2C${activeData.lat}%2F${activeData.zoom}`;
+  }, [selectedPoint, activeData]);
 
   const yandexDirectLink = `https://yandex.kz/maps/162/almaty/?ll=${activeData.lon}%2C${activeData.lat}&z=${activeData.zoom}&pt=${activeData.lon}%2C${activeData.lat}`;
 
@@ -550,55 +580,69 @@ export default function CoverageMap() {
                 </div>
               </div>
 
-              <a
-                href={yandexDirectLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.openYandexLink}
-              >
-                <Navigation size={13} />
-                <span>Открыть в Яндекс.Картах</span>
-                <ExternalLink size={12} />
-              </a>
+              <div className={styles.externalLinksGroup}>
+                <a
+                  href={twoGisDirectLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.openYandexLink}
+                >
+                  <Navigation size={13} />
+                  <span>Открыть в 2ГИС</span>
+                  <ExternalLink size={12} />
+                </a>
+                <a
+                  href={yandexDirectLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.openYandexLink}
+                >
+                  <Navigation size={13} />
+                  <span>Открыть в Яндекс.Картах</span>
+                  <ExternalLink size={12} />
+                </a>
+              </div>
             </div>
 
-            <div
-              className={`${styles.mapCanvasWrapper} ${
-                isFullscreen ? styles.mapCanvasFullscreen : ''
-              }`}
-            >
-              {!scriptFailed ? (
-                <>
-                  <div
-                    ref={mapContainerRef}
-                    className={styles.yandexMapContainer}
-                    aria-label="Интерактивная Яндекс.Карта склада ТОО Лад Коммерц и районов доставки"
+            <div className={styles.mapCanvasWrapper}>
+              <div
+                className={`${styles.mapViewport} ${
+                  isFullscreen ? styles.mapCanvasFullscreen : ''
+                }`}
+              >
+                {!scriptFailed ? (
+                  <>
+                    <div
+                      ref={mapContainerRef}
+                      className={styles.yandexMapContainer}
+                      aria-label="Интерактивная Яндекс.Карта склада ТОО Лад Коммерц и районов доставки"
+                    />
+                    <button
+                      type="button"
+                      className={styles.fullscreenToggleBtn}
+                      onClick={() => setIsFullscreen((prev) => !prev)}
+                      aria-label={isFullscreen ? 'Свернуть карту' : 'Развернуть карту на весь экран'}
+                    >
+                      {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+                      <span>{isFullscreen ? 'Свернуть' : 'Во весь экран'}</span>
+                    </button>
+                    {!mapReady && (
+                      <div className={styles.mapLoadingOverlay}>
+                        <span>Загрузка интерактивной Яндекс.Карты…</span>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <iframe
+                    key={fallbackIframeUrl}
+                    src={fallbackIframeUrl}
+                    title="Яндекс.Карта склада ТОО Лад Коммерц (ул. Черноморская, 12) и зон доставки"
+                    className={styles.yandexIframe}
+                    loading="lazy"
+                    allowFullScreen
                   />
-                  <button
-                    type="button"
-                    className={styles.fullscreenToggleBtn}
-                    onClick={() => setIsFullscreen((prev) => !prev)}
-                    aria-label={isFullscreen ? 'Свернуть карту' : 'Развернуть карту на весь экран'}
-                  >
-                    {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
-                    <span>{isFullscreen ? 'Свернуть' : 'Во весь экран'}</span>
-                  </button>
-                  {!mapReady && (
-                    <div className={styles.mapLoadingOverlay}>
-                      <span>Загрузка интерактивной Яндекс.Карты…</span>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <iframe
-                  key={fallbackIframeUrl}
-                  src={fallbackIframeUrl}
-                  title="Яндекс.Карта склада ТОО Лад Коммерц (ул. Черноморская, 12) и зон доставки"
-                  className={styles.yandexIframe}
-                  loading="lazy"
-                  allowFullScreen
-                />
-              )}
+                )}
+              </div>
             </div>
 
             {/* Adaptive touch-friendly quick selector strip */}
