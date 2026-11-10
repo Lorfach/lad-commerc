@@ -53,6 +53,8 @@ html {
   font-family: var(--font-body);
   background-color: var(--color-ground);
   color: var(--color-ink);
+  max-width: 100%;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

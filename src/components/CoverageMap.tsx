@@ -2,7 +2,16 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import styles from './CoverageMap.module.css';
-import { MapPin, Warehouse, Store, MessageCircle, ExternalLink, Navigation } from 'lucide-react';
+import {
+  MapPin,
+  Warehouse,
+  Store,
+  MessageCircle,
+  ExternalLink,
+  Navigation,
+  Maximize2,
+  Minimize2,
+} from 'lucide-react';
 
 interface DeliveryPoint {
   id: string;
@@ -213,6 +222,7 @@ export default function CoverageMap() {
   const [focusTrigger, setFocusTrigger] = useState<number>(0);
   const [mapReady, setMapReady] = useState(false);
   const [scriptFailed, setScriptFailed] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
@@ -231,9 +241,35 @@ export default function CoverageMap() {
       ? HUB
       : POINTS.find((p) => p.id === selectedPoint) || HUB;
 
+  // Handle Escape key & body scroll lock when map is in controlled fullscreen mode
+  useEffect(() => {
+    const map = mapInstanceRef.current;
+    if (map && map.container) {
+      map.container.fitToViewport();
+      const t1 = setTimeout(() => map.container.fitToViewport(), 40);
+      const t2 = setTimeout(() => map.container.fitToViewport(), 180);
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+      };
+    }
+  }, [isFullscreen]);
+
+  useEffect(() => {
+    if (!isFullscreen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsFullscreen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFullscreen]);
+
   // 1. Load Yandex Maps JS API 2.1 and initialize interactive map instance
   useEffect(() => {
     let cancelled = false;
+    let resizeObserver: ResizeObserver | null = null;
 
     const initMap = () => {
       if (cancelled || !mapContainerRef.current || !window.ymaps) return;
@@ -243,12 +279,13 @@ export default function CoverageMap() {
         if (cancelled || !mapContainerRef.current || mapInstanceRef.current) return;
 
         try {
+          // Only use zoomControl; fullscreen is handled by our own glitch-free React container state
           const map = new window.ymaps.Map(
             mapContainerRef.current,
             {
               center: [HUB.lat, HUB.lon],
               zoom: 12,
-              controls: ['zoomControl', 'fullscreenControl'],
+              controls: ['zoomControl'],
             },
             {
               suppressMapOpenBlock: true,
@@ -257,6 +294,16 @@ export default function CoverageMap() {
 
           map.behaviors.disable('scrollZoom');
           mapInstanceRef.current = map;
+
+          if (typeof ResizeObserver !== 'undefined' && mapContainerRef.current) {
+            resizeObserver = new ResizeObserver(() => {
+              if (mapInstanceRef.current && mapInstanceRef.current.container) {
+                mapInstanceRef.current.container.fitToViewport();
+              }
+            });
+            resizeObserver.observe(mapContainerRef.current);
+          }
+
           setMapReady(true);
         } catch {
           setScriptFailed(true);
@@ -286,6 +333,9 @@ export default function CoverageMap() {
 
     return () => {
       cancelled = true;
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
       if (mapInstanceRef.current) {
         mapInstanceRef.current.destroy();
         mapInstanceRef.current = null;
@@ -512,7 +562,11 @@ export default function CoverageMap() {
               </a>
             </div>
 
-            <div className={styles.mapCanvasWrapper}>
+            <div
+              className={`${styles.mapCanvasWrapper} ${
+                isFullscreen ? styles.mapCanvasFullscreen : ''
+              }`}
+            >
               {!scriptFailed ? (
                 <>
                   <div
@@ -520,6 +574,15 @@ export default function CoverageMap() {
                     className={styles.yandexMapContainer}
                     aria-label="Интерактивная Яндекс.Карта склада ТОО Лад Коммерц и районов доставки"
                   />
+                  <button
+                    type="button"
+                    className={styles.fullscreenToggleBtn}
+                    onClick={() => setIsFullscreen((prev) => !prev)}
+                    aria-label={isFullscreen ? 'Свернуть карту' : 'Развернуть карту на весь экран'}
+                  >
+                    {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+                    <span>{isFullscreen ? 'Свернуть' : 'Во весь экран'}</span>
+                  </button>
                   {!mapReady && (
                     <div className={styles.mapLoadingOverlay}>
                       <span>Загрузка интерактивной Яндекс.Карты…</span>
