@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styles from './HeroSection.module.css';
-import { MapPin, MessageCircle, Phone, Package, Navigation, ChevronDown, CheckCircle2, Award } from 'lucide-react';
+import { MapPin, Phone, Package, Navigation } from 'lucide-react';
 
 interface HeroSectionProps {
   onOpenInquiry: (factoryName?: string) => void;
@@ -20,15 +20,14 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
   return (
     <section className={styles.heroWrapper} id="hero">
       {/* Top Status Strip */}
-      <div className={styles.topStrip} data-region="top-strip">
+      <div className={styles.topStrip}>
         <div className={styles.topContainer}>
           <div className={styles.topLocation}>
             <MapPin size={14} className={styles.topPinIcon} />
-            <span>г. Алматы, ул. Черноморская, 12 • Складской комплекс дистрибьюции (+18°C)</span>
+            <span>г. Алматы, ул. Черноморская, 12 • Склад кондитерских изделий (+18°C)</span>
           </div>
           <div className={styles.topDistributorBadge}>
-            <Award size={13} />
-            <span>Официальный дистрибьютор 3 российских заводов</span>
+            <span>Поставки от 3 российских фабрик</span>
           </div>
         </div>
       </div>
@@ -36,28 +35,28 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
       {/* Header Navigation Strip */}
       <div className={styles.headerStrip}>
         <header className={styles.headerNav}>
-          <a href="#hero" className={styles.brandLogo} data-region="brand-logo">
+          <a href="#hero" className={styles.brandLogo}>
             <svg className={styles.brandEmblemSvg} viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="22" cy="22" r="19" stroke="#be8b4d" strokeWidth="2.5" />
               <path d="M14 28V16M14 28H22M22 16V28M22 22L29 16M22 22L29 28" stroke="#643831" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <div className={styles.brandText}>
               <span className={styles.brandName}>ЛАД КОММЕРЦ</span>
-              <span className={styles.brandSub}>ДИСТРИБЬЮТОРСКАЯ КОМПАНИЯ</span>
+              <span className={styles.brandSub}>ДИСТРИБЬЮТОР КОНДИТЕРСКИХ ИЗДЕЛИЙ</span>
             </div>
           </a>
 
-          <nav className={styles.navMenu} data-region="nav-menu">
+          <nav className={styles.navMenu}>
             <ul className={styles.navLinks}>
-              <li><a href="#factories" className={styles.navLink}>Ассортимент заводов</a></li>
-              <li><a href="#coverage" className={styles.navLink}>Карта охвата</a></li>
+              <li><a href="#factories" className={styles.navLink}>Фабрики и ассортимент</a></li>
+              <li><a href="#coverage" className={styles.navLink}>Карта доставки</a></li>
               <li><a href="#about" className={styles.navLink}>О компании</a></li>
               <li><a href="#warehouse" className={styles.navLink}>Склад</a></li>
               <li><a href="#contacts" className={styles.navLink}>Контакты</a></li>
             </ul>
           </nav>
 
-          <div className={styles.headerPhones} data-region="header-phones">
+          <div className={styles.headerPhones}>
             <a href="tel:+77017139738" className={styles.phoneLink}>
               <span className={styles.phoneLabel}>Kcell:</span>
               <span className={styles.phoneNumber}>+7 (701) 713-97-38</span>
@@ -73,28 +72,23 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
       {/* Main Hero Container */}
       <div className={styles.heroContainer}>
         <div className={styles.heroContent}>
-          <div className={styles.distributorPill}>
-            <span className={styles.distributorDot} />
-            <span>Прямые поставки от производителей</span>
-          </div>
-
-          <h1 className={styles.heroTitle} data-region="hero-title">
-            Официальная дистрибьюция кондитерских изделий в Алматы
+          <h1 className={styles.heroTitle}>
+            Дистрибьюция кондитерских изделий в Алматы и области
           </h1>
 
-          <p className={styles.heroDescription} data-region="hero-description">
-            Прямые поставки с 3 российских фабрик: <strong>«Алёшина»</strong>, <strong>«Черногорский Кондитер»</strong> и <strong>«Томский Кондитер»</strong>. Собственный температурный склад в Алматы на Черноморской, 12. Индивидуальные условия для розничных магазинов и оптовых покупателей.
+          <p className={styles.heroDescription}>
+            Поставляем продукцию трех российских кондитерских фабрик: <strong>«Завод АлёшинА»</strong>, <strong>«Черногорский Кондитер»</strong> и <strong>«Томский Кондитер»</strong>. Склад на Черноморской, 12. Отдельные условия для розничных магазинов и оптовых складов.
           </p>
 
           {/* 3 Fast Action Navigation Buttons */}
-          <div className={styles.fastActionGrid} data-region="fast-actions">
+          <div className={styles.fastActionGrid}>
             <a href="#factories" className={styles.fastActionCard}>
               <div className={styles.fastIconWrap}>
                 <Package size={20} />
               </div>
               <div className={styles.fastText}>
-                <span className={styles.fastTitle}>Ассортимент 3 заводов</span>
-                <span className={styles.fastDesc}>Вафли, печенье, конфеты, кексы</span>
+                <span className={styles.fastTitle}>Продукция 3 фабрик</span>
+                <span className={styles.fastDesc}>Вафли, печенье, соломка, кексы</span>
               </div>
             </a>
 
@@ -103,8 +97,8 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
                 <Navigation size={20} />
               </div>
               <div className={styles.fastText}>
-                <span className={styles.fastTitle}>Местоположение и карта</span>
-                <span className={styles.fastDesc}>Склад и точки в Алматы и области</span>
+                <span className={styles.fastTitle}>Склад и карта доставки</span>
+                <span className={styles.fastDesc}>Черноморская 12, Алматы и область</span>
               </div>
             </a>
 
@@ -113,8 +107,8 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
                 <Phone size={20} />
               </div>
               <div className={styles.fastText}>
-                <span className={styles.fastTitle}>Контакты и склад</span>
-                <span className={styles.fastDesc}>Сотовые Kcell, Tele2 и WhatsApp</span>
+                <span className={styles.fastTitle}>Связаться с нами</span>
+                <span className={styles.fastDesc}>Kcell, Tele2 и WhatsApp</span>
               </div>
             </a>
           </div>
@@ -124,16 +118,14 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
             <button
               type="button"
               className={styles.btnCalculate}
-              data-region="btn-calculate"
               onClick={() => onOpenInquiry()}
             >
-              Рассчитать условия поставок
+              Узнать условия поставок
             </button>
 
             <button
               type="button"
               className={styles.btnWhatsApp}
-              data-region="btn-whatsapp"
               onClick={handleWhatsApp}
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -145,7 +137,7 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
         </div>
 
         {/* Right visual showcase */}
-        <div className={styles.heroShowcasePlate} data-region="confectionery-showcase">
+        <div className={styles.heroShowcasePlate}>
           <div className={styles.plateWrapper}>
             <img
               src="/assets/plates/confectionery-showcase.png"
@@ -153,19 +145,15 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
               className={styles.plateImage}
             />
 
-            {/* Floating Factory Pills */}
             <div className={`${styles.factoryTag} ${styles.tagAlyoshina}`}>
-              <CheckCircle2 size={14} className={styles.tagCheck} />
-              <span>КФ «Алёшина»</span>
+              <span>«Завод АлёшинА»</span>
             </div>
 
             <div className={`${styles.factoryTag} ${styles.tagChernogorsk}`}>
-              <CheckCircle2 size={14} className={styles.tagCheck} />
               <span>«Черногорский Кондитер»</span>
             </div>
 
             <div className={`${styles.factoryTag} ${styles.tagTomsk}`}>
-              <CheckCircle2 size={14} className={styles.tagCheck} />
               <span>«Томский Кондитер»</span>
             </div>
           </div>
@@ -175,19 +163,19 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
       {/* Metrics Strip */}
       <div className={styles.metricsStrip}>
         <div className={styles.metricsContainer}>
-          <div className={styles.metricItem} data-region="metric-factories">
-            <span className={styles.metricNumber}>3 завода</span>
-            <span className={styles.metricLabel}>прямые фабричные контракты</span>
+          <div className={styles.metricItem}>
+            <span className={styles.metricNumber}>3 фабрики</span>
+            <span className={styles.metricLabel}>прямые поставки с производств</span>
           </div>
 
-          <div className={styles.metricItem} data-region="metric-temp">
+          <div className={styles.metricItem}>
             <span className={styles.metricNumber}>+18°C</span>
-            <span className={styles.metricLabel}>постоянный климат-контроль</span>
+            <span className={styles.metricLabel}>склад в Алматы с климат-контролем</span>
           </div>
 
-          <div className={styles.metricItem} data-region="metric-coverage">
+          <div className={styles.metricItem}>
             <span className={styles.metricNumber}>24 часа</span>
-            <span className={styles.metricLabel}>сборка и доставка по Алматы и области</span>
+            <span className={styles.metricLabel}>отгрузка и доставка по городу и области</span>
           </div>
         </div>
       </div>

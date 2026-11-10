@@ -10,24 +10,24 @@ interface CollaborationStepsProps {
 export default function CollaborationSteps({ onOpenInquiry }: CollaborationStepsProps) {
   const steps = [
     {
-      num: '01',
-      title: 'Подбор ассортимента 3 заводов',
-      desc: 'Выбираете востребованные позиции фабрик «Алёшина», «Черногорский Кондитер» и «Томский Кондитер» под формат полок вашего магазина или оптовой базы.',
+      step: '1',
+      title: 'Выбор позиций',
+      desc: 'Выбираете нужные позиции фабрик «Завод АлёшинА», «Черногорский Кондитер» и «Томский Кондитер» под ваши витрины или склад.',
     },
     {
-      num: '02',
-      title: 'Индивидуальный расчет условий',
-      desc: 'Согласуем персональные коммерческие условия, объемы партий и периодичность поставок с учетом специфики вашей розницы или оптовой базы.',
+      step: '2',
+      title: 'Расчет условий',
+      desc: 'Менеджер рассчитывает цены под ваш объем партии, согласует график отгрузок и условия оплаты.',
     },
     {
-      num: '03',
-      title: 'Договор и официальный пакет',
-      desc: 'Заключение договора для юрлиц и ИП. Безналичный расчет, выписка ЭСФ, электронных накладных и сертификатов качества ЕАС.',
+      step: '3',
+      title: 'Договор и документы',
+      desc: 'Заключаем договор поставки с ТОО или ИП. Предоставляем ЭСФ, электронные накладные и сертификаты ЕАС.',
     },
     {
-      num: '04',
-      title: 'Быстрая отгрузка и доставка',
-      desc: 'Сборка заказа на складе на Черноморской, 12 за 24 часа. Доставка собственным автопарком по Алматы и области либо оперативный самовывоз.',
+      step: '4',
+      title: 'Отгрузка или доставка',
+      desc: 'Собираем заказ на Черноморской, 12 за 24 часа. Забираете самовывозом со склада или привозим нашим транспортом.',
     },
   ];
 
@@ -35,16 +35,16 @@ export default function CollaborationSteps({ onOpenInquiry }: CollaborationSteps
     <section className={styles.section} id="process">
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Как начать сотрудничество</h2>
+          <h2 className={styles.title}>Порядок работы</h2>
           <p className={styles.subtitle}>
-            Порядок отгрузки со склада в Алматы и доставки по региону для розничных магазинов и оптовых покупателей.
+            От первой заявки до отгрузки со склада в Алматы — 4 простых шага.
           </p>
         </div>
 
         <div className={styles.stepsGrid}>
           {steps.map((s) => (
-            <div key={s.num} className={styles.stepCard}>
-              <span className={styles.stepNumber}>{s.num}</span>
+            <div key={s.step} className={styles.stepCard}>
+              <span className={styles.stepBadge}>Шаг {s.step}</span>
               <h3 className={styles.stepTitle}>{s.title}</h3>
               <p className={styles.stepDesc}>{s.desc}</p>
             </div>
@@ -53,15 +53,15 @@ export default function CollaborationSteps({ onOpenInquiry }: CollaborationSteps
 
         <div className={styles.ctaBox}>
           <div className={styles.ctaText}>
-            <h3>Обсудить условия поставок под ваш бизнес</h3>
-            <p>Оставьте контакты — менеджер перезвонит в рабочее время склада и согласует объем и график поставок.</p>
+            <h3>Узнать условия поставок под ваш объем</h3>
+            <p>Оставьте контакты — перезвоним в рабочее время склада, ответим на вопросы и рассчитаем цены.</p>
           </div>
           <button
             type="button"
             className={styles.btnPrimary}
             onClick={onOpenInquiry}
           >
-            Рассчитать условия поставок
+            Рассчитать условия
           </button>
         </div>
       </div>

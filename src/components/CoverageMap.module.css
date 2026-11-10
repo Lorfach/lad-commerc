@@ -12,39 +12,7 @@
 .header {
   text-align: center;
   max-width: 840px;
-  margin: 0 auto 48px;
-}
-
-.badgeRow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.mapBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background-color: #643831;
-  color: #ffffff;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.statBadge {
-  display: inline-flex;
-  align-items: center;
-  background-color: rgba(190, 139, 77, 0.16);
-  color: #7d521e;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  font-size: 13px;
-  font-weight: 600;
+  margin: 0 auto 40px;
 }
 
 .title {

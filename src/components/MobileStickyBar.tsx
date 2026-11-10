@@ -21,7 +21,7 @@ export default function MobileStickyBar({ onOpenInquiry }: MobileStickyBarProps)
     <div className={styles.stickyBar}>
       <div className={styles.buttons}>
         <button type="button" className={styles.btnPrice} onClick={onOpenInquiry}>
-          Рассчитать условия
+          Узнать условия
         </button>
         <button type="button" className={styles.btnWhatsApp} onClick={handleWhatsApp}>
           <MessageCircle size={16} />

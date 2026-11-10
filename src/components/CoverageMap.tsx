@@ -59,17 +59,9 @@ export default function CoverageMap({ onConnectStore }: CoverageMapProps) {
     <section className={styles.section} id="coverage">
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.badgeRow}>
-            <span className={styles.mapBadge}>
-              <Navigation size={14} />
-              Карта присутствия
-            </span>
-            <span className={styles.statBadge}>Алматы и Алматинская область</span>
-          </div>
-
-          <h2 className={styles.title}>География поставок и дистрибьюции</h2>
+          <h2 className={styles.title}>Карта доставки: Алматы и область</h2>
           <p className={styles.subtitle}>
-            Складской комплекс на ул. Черноморская, 12. Ежедневные маршруты по районам Алматы и регулярные рейсы по городам и поселкам Алматинской области.
+            Склад компании находится на ул. Черноморская, 12. Развозим заказы собственным транспортом по магазинам города и отправляем машины в населенные пункты области.
           </p>
 
           <div className={styles.filterBar}>
