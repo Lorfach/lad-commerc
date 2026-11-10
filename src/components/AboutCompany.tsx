@@ -66,9 +66,9 @@ export default function AboutCompany() {
             </div>
 
             <div className={styles.detailRow}>
-              <span className={styles.detailLabel}>Сотовые телефоны:</span>
+              <span className={styles.detailLabel}>Телефоны:</span>
               <span className={styles.detailValue}>
-                +7 (701) 713-97-38 (Kcell),<br />+7 (707) 823-34-22 (Tele2 / WhatsApp)
+                +7 (701) 713-97-38,<br />+7 (707) 823-34-22 (WhatsApp)
               </span>
             </div>
 

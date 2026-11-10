@@ -414,6 +414,20 @@
   .section {
     padding: 56px 16px;
   }
+
+  .tabsNav {
+    width: 100%;
+    border-radius: 16px;
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .tabBtn {
+    padding: 8px 12px;
+    font-size: 13.5px;
+    flex: 1 1 calc(50% - 6px);
+    text-align: center;
+  }
   
   .cardTop {
     padding: 20px 18px 16px;

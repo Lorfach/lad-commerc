@@ -171,18 +171,23 @@
   color: #be8b4d;
 }
 
-.phoneLabel {
-  font-size: 11px;
-  font-weight: 700;
-  color: #8c5b22;
-  text-transform: uppercase;
-  background: rgba(190, 139, 77, 0.12);
-  padding: 2px 6px;
-  border-radius: 4px;
+.phoneIcon {
+  color: #be8b4d;
+  flex-shrink: 0;
 }
 
 .phoneNumber {
   color: #1c1514;
+}
+
+.phoneWaBadge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1fa851;
+  background: rgba(37, 211, 102, 0.12);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 2px;
 }
 
 /* Hero body */
@@ -427,6 +432,16 @@
 @media (max-width: 640px) {
   .factoryTag {
     display: none;
+  }
+  .heroActions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .btnWhatsAppPrimary,
+  .btnSecondaryContacts {
+    width: 100%;
+    text-align: center;
   }
 }
 

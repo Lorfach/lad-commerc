@@ -54,12 +54,12 @@ export default function HeroSection() {
 
           <div className={styles.headerPhones}>
             <a href="tel:+77017139738" className={styles.phoneLink}>
-              <span className={styles.phoneLabel}>Kcell:</span>
+              <Phone size={13} className={styles.phoneIcon} />
               <span className={styles.phoneNumber}>+7 (701) 713-97-38</span>
             </a>
             <a href="tel:+77078233422" className={styles.phoneLink}>
-              <span className={styles.phoneLabel}>Tele2:</span>
               <span className={styles.phoneNumber}>+7 (707) 823-34-22</span>
+              <span className={styles.phoneWaBadge}>WhatsApp</span>
             </a>
           </div>
         </header>
@@ -104,7 +104,7 @@ export default function HeroSection() {
               </div>
               <div className={styles.fastText}>
                 <span className={styles.fastTitle}>Связаться с нами</span>
-                <span className={styles.fastDesc}>Kcell, Tele2 и WhatsApp</span>
+                <span className={styles.fastDesc}>Звонки и WhatsApp</span>
               </div>
             </a>
           </div>

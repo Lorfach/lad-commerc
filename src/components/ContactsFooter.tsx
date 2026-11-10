@@ -38,11 +38,11 @@ export default function ContactsFooter() {
                   <strong>Телефоны:</strong>
                   <br />
                   <a href="tel:+77017139738" className={styles.footerPhoneLink}>
-                    +7 (701) 713-97-38 (Kcell)
+                    +7 (701) 713-97-38
                   </a>
                   <br />
                   <a href="tel:+77078233422" className={styles.footerPhoneLink}>
-                    +7 (707) 823-34-22 (Tele2, WhatsApp)
+                    +7 (707) 823-34-22 (WhatsApp)
                   </a>
                 </div>
               </li>
