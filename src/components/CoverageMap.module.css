@@ -1,7 +1,7 @@
 .section {
-  padding: 80px 24px;
-  background-color: #faf6ed;
-  border-bottom: 1px solid rgba(100, 56, 49, 0.08);
+  padding: 72px 24px;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .container {
@@ -11,35 +11,33 @@
 
 .header {
   text-align: center;
-  max-width: 840px;
+  max-width: 780px;
   margin: 0 auto 40px;
 }
 
 .title {
-  font-family: var(--font-display, 'Noto Sans Display', sans-serif);
-  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
   font-weight: 800;
-  color: #1c1514;
+  color: var(--color-ink);
   line-height: 1.15;
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   letter-spacing: -0.015em;
 }
 
 .subtitle {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 17px;
-  color: #5a4b48;
+  font-size: 16.5px;
+  color: var(--color-ink-secondary);
   line-height: 1.6;
-  margin: 0 auto 28px;
+  margin: 0 auto 24px;
 }
 
 .filterBar {
   display: inline-flex;
-  background: #ffffff;
-  padding: 6px;
-  border-radius: 9999px;
-  box-shadow: 0 2px 10px rgba(100, 56, 49, 0.06);
-  border: 1px solid rgba(100, 56, 49, 0.12);
+  background: var(--color-ground);
+  padding: 5px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
   gap: 6px;
   flex-wrap: wrap;
   justify-content: center;
@@ -48,32 +46,31 @@
 .filterBtn {
   background: transparent;
   border: none;
-  padding: 10px 20px;
-  border-radius: 9999px;
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 14.5px;
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
   font-weight: 600;
-  color: #5a4b48;
+  color: var(--color-ink-secondary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .filterBtn:hover {
-  color: #1c1514;
-  background: rgba(190, 139, 77, 0.08);
+  color: var(--color-ink);
+  background: rgba(190, 139, 77, 0.12);
 }
 
-.filterBtnActive {
-  background: #643831 !important;
-  color: #ffffff !important;
-  box-shadow: 0 2px 8px rgba(100, 56, 49, 0.25);
+.filterBtn.filterBtnActive {
+  background: var(--color-cocoa);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(100, 56, 49, 0.22);
 }
 
 .contentGrid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 32px;
-  align-items: start;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 28px;
+  align-items: stretch;
 }
 
 @media (max-width: 992px) {
@@ -83,13 +80,14 @@
 }
 
 .mapCard {
-  background: #ffffff;
-  border-radius: 20px;
-  border: 1px solid rgba(100, 56, 49, 0.12);
-  box-shadow: 0 8px 30px rgba(100, 56, 49, 0.06);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
   padding: 24px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .mapLegend {
@@ -98,29 +96,31 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid rgba(100, 56, 49, 0.08);
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--color-border);
   font-size: 13px;
-  color: #5a4b48;
+  color: var(--color-ink-secondary);
 }
 
 .legendItem {
   display: flex;
   align-items: center;
   gap: 8px;
+  font-weight: 500;
 }
 
 .legendHubDot {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: #643831;
-  border: 2px solid #be8b4d;
+  background: var(--color-cocoa);
+  border: 2px solid var(--color-gold);
+  display: inline-block;
 }
 
 .legendStarDot {
-  color: #be8b4d;
+  color: var(--color-gold);
   font-size: 16px;
   line-height: 1;
 }
@@ -128,38 +128,38 @@
 .mapCanvasWrapper {
   position: relative;
   width: 100%;
-  height: 480px;
-  background: #fdfaf2;
+  height: 390px;
+  background: var(--color-ground);
   border-radius: 14px;
-  border: 1px solid rgba(100, 56, 49, 0.08);
+  border: 1px solid var(--color-border);
   overflow: hidden;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .mapCanvasWrapper {
-    height: 380px;
+    height: 320px;
   }
 }
 
 .mapSvgBg {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
+  display: block;
 }
 
-/* Hub Marker */
+/* Central Hub Marker */
 .markerHub {
   position: absolute;
   transform: translate(-50%, -50%);
-  cursor: pointer;
   z-index: 10;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  background: transparent;
+  border: none;
+  padding: 4px;
 }
 
 .hubBeacon {
@@ -168,20 +168,27 @@
   height: 38px;
   border-radius: 50%;
   background: rgba(190, 139, 77, 0.35);
-  animation: pulseBeacon 2s infinite ease-out;
-  top: -2px;
-  left: -2px;
+  animation: pulseBeacon 2.2s infinite ease-out;
+  top: 2px;
+  left: 50%;
+  margin-left: -19px;
   pointer-events: none;
 }
 
 @keyframes pulseBeacon {
   0% {
-    transform: scale(0.6);
-    opacity: 0.9;
+    transform: scale(0.65);
+    opacity: 0.85;
   }
   100% {
-    transform: scale(1.8);
+    transform: scale(1.75);
     opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hubBeacon {
+    animation: none;
   }
 }
 
@@ -189,32 +196,31 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: #643831;
-  border: 2.5px solid #be8b4d;
+  background: var(--color-cocoa);
+  border: 2.5px solid var(--color-gold);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(100, 56, 49, 0.35);
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(100, 56, 49, 0.3);
+  transition: transform var(--transition-fast);
 }
 
 .markerHub:hover .hubIconBox,
 .markerHubActive .hubIconBox {
-  transform: scale(1.15);
-  background: #4a2620;
-  border-color: #ffd285;
+  transform: scale(1.12);
+  background: var(--color-cocoa-dark);
 }
 
 .hubLabel {
-  background: #1c1514;
+  background: var(--color-ink);
   color: #ffffff;
   font-size: 11px;
   font-weight: 700;
   padding: 3px 8px;
   border-radius: 6px;
   white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
 }
 
 /* Partner Star Points */
@@ -228,16 +234,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0;
-  transition: transform 0.15s ease;
+  padding: 6px;
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+  transition: transform var(--transition-fast);
 }
 
 .starGlyph {
-  color: #be8b4d;
-  font-size: 19px;
+  color: var(--color-gold);
+  font-size: 18px;
   line-height: 1;
-  filter: drop-shadow(0 2px 4px rgba(100, 56, 49, 0.25));
-  transition: transform 0.2s ease, color 0.2s ease;
+  filter: drop-shadow(0 2px 4px rgba(100, 56, 49, 0.22));
+  transition: transform var(--transition-fast), color var(--transition-fast);
 }
 
 .markerRegion .starGlyph {
@@ -246,38 +255,35 @@
 
 .markerStar:hover .starGlyph,
 .markerStarActive .starGlyph {
-  transform: scale(1.4);
-  color: #e69d35;
+  transform: scale(1.35);
+  color: var(--color-cocoa);
 }
 
 .starLabel {
-  background: rgba(255, 255, 255, 0.92);
-  color: #1c1514;
-  font-family: var(--font-body, 'Inter', sans-serif);
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--color-ink);
   font-size: 10.5px;
   font-weight: 600;
   padding: 2px 6px;
   border-radius: 4px;
   white-space: nowrap;
-  border: 1px solid rgba(100, 56, 49, 0.15);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   margin-top: 2px;
-  opacity: 0.85;
-  transition: opacity 0.2s ease;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .markerStar:hover .starLabel,
 .markerStarActive .starLabel {
-  opacity: 1;
-  background: #643831;
+  background: var(--color-cocoa);
   color: #ffffff;
-  border-color: #643831;
+  border-color: var(--color-cocoa);
 }
 
 .mapFooterNote {
-  margin-top: 14px;
+  margin-top: 12px;
   font-size: 12.5px;
-  color: #7d6e6b;
+  color: var(--color-ink-muted);
   text-align: center;
 }
 
@@ -285,31 +291,34 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .pointDetailCard {
-  background: #ffffff;
-  border-radius: 20px;
-  border: 1px solid rgba(100, 56, 49, 0.12);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
   padding: 28px;
-  box-shadow: 0 6px 24px rgba(100, 56, 49, 0.05);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .pointHeader {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(100, 56, 49, 0.08);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .pointIconWrap {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 12px;
-  background: rgba(190, 139, 77, 0.14);
+  background: var(--color-gold-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -317,91 +326,79 @@
 }
 
 .pointIconHub {
-  color: #643831;
+  color: var(--color-cocoa);
 }
 
 .pointIconStore {
-  color: #be8b4d;
-}
-
-.pointType {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #9c6628;
-  letter-spacing: 0.04em;
+  color: var(--color-gold-hover);
 }
 
 .pointName {
-  font-family: var(--font-display, 'Noto Sans Display', sans-serif);
+  font-family: var(--font-display);
   font-size: 20px;
   font-weight: 800;
-  color: #1c1514;
-  margin: 4px 0 0;
-  line-height: 1.25;
+  color: var(--color-ink);
+  margin: 0 0 3px;
+  line-height: 1.2;
 }
 
-.detailRow {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 14px;
-  color: #4a3b38;
-  margin-bottom: 10px;
-}
-
-.detailIcon {
-  color: #643831;
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
-.detailIconGold {
-  color: #be8b4d;
-  margin-top: 2px;
-  flex-shrink: 0;
+.pointAreaSub {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink-muted);
+  display: block;
 }
 
 .pointDesc {
   font-size: 14.5px;
-  color: #5a4b48;
+  color: var(--color-ink-secondary);
   line-height: 1.55;
-  margin: 14px 0 20px;
-  background: #faf6ed;
-  padding: 12px 16px;
+  margin: 0 0 18px;
+  background: var(--color-ground);
+  padding: 13px 15px;
   border-radius: 10px;
+  border: 1px solid var(--color-border);
 }
 
-.metricsBox {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 24px;
-  padding-top: 6px;
-}
-
-.metricItem {
-  background: #ffffff;
-  border: 1px solid rgba(100, 56, 49, 0.1);
-  padding: 12px 8px;
-  border-radius: 12px;
-  text-align: center;
+.warehouseSpecs {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 14px 16px;
+  background: #fbf8f1;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
 }
 
-.metricVal {
-  font-family: var(--font-display, 'Noto Sans Display', sans-serif);
-  font-size: 18px;
-  font-weight: 800;
-  color: #643831;
+.specRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13.5px;
+  color: var(--color-ink-secondary);
+  line-height: 1.4;
 }
 
-.metricSub {
-  font-size: 11px;
-  color: #7d6e6b;
+.specRow strong {
+  color: var(--color-ink);
+}
+
+.specIcon {
+  color: var(--color-cocoa);
   margin-top: 2px;
-  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.specDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  margin-top: 6px;
+  margin-left: 4px;
+  margin-right: 4px;
+  flex-shrink: 0;
 }
 
 .sidebarAction {
@@ -417,19 +414,43 @@
   background-color: #25d366;
   color: #ffffff;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 14px 20px;
-  font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.28);
 }
 
 .btnConnect:hover {
   background-color: #1fa851;
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
 }
 
+@media (max-width: 640px) {
+  .section {
+    padding: 52px 16px;
+  }
+
+  .filterBar {
+    width: 100%;
+    border-radius: 14px;
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .filterBtn {
+    flex: 1 1 100%;
+    text-align: center;
+    padding: 8px 12px;
+  }
+
+  .mapCard {
+    padding: 16px;
+  }
+
+  .pointDetailCard {
+    padding: 20px 18px;
+  }
+}

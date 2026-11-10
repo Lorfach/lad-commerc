@@ -10,14 +10,14 @@ export default function ContactsFooter() {
       <div className={styles.container}>
         <div className={styles.topGrid}>
           <div className={styles.brandCol}>
-            <h3>ТОО «ЛАД КОММЕРЦ»</h3>
+            <h3 className={styles.brandHeading}>ТОО «ЛАД КОММЕРЦ»</h3>
             <p className={styles.brandDesc}>
               Дистрибьютор кондитерских изделий фабрик «Завод АлёшинА», «Черногорский Кондитер» и «Томский Кондитер» в Алматы и Алматинской области. Работаем с 2005 года.
             </p>
             <div className={styles.requisitesBox}>
               <p>ТОО «Лад Коммерц» • БИН: 050640006693</p>
               <p>Руководитель: Ершов А. В.</p>
-              <p>Юр. адрес: Алматы, ул. Байзакова, 225, кв. 94</p>
+              <p>Юр. адрес: г. Алматы, ул. Байзакова, 225, кв. 94</p>
             </div>
           </div>
 
@@ -51,7 +51,10 @@ export default function ContactsFooter() {
                 <Mail size={18} className={styles.contactIcon} />
                 <div>
                   <strong>Электронная почта:</strong>
-                  <br />ladcomerc@mail.ru
+                  <br />
+                  <a href="mailto:ladcomerc@mail.ru" className={styles.footerPhoneLink}>
+                    ladcomerc@mail.ru
+                  </a>
                 </div>
               </li>
 
@@ -67,14 +70,12 @@ export default function ContactsFooter() {
 
           <div className={styles.navCol}>
             <h4 className={styles.colTitle}>Разделы</h4>
-            <ul>
+            <ul className={styles.navList}>
               <li><a href="#hero" className={styles.navLink}>Главная</a></li>
               <li><a href="#factories" className={styles.navLink}>Продукция 3 фабрик</a></li>
-              <li><a href="#coverage" className={styles.navLink}>Карта доставки</a></li>
-              <li><a href="#about" className={styles.navLink}>О компании</a></li>
-              <li><a href="#warehouse" className={styles.navLink}>Склад на Черноморской</a></li>
-              <li><a href="#process" className={styles.navLink}>Порядок работы</a></li>
-              <li><a href="#contacts" className={styles.navLink}>Контакты и реквизиты</a></li>
+              <li><a href="#coverage" className={styles.navLink}>Склад и карта доставки</a></li>
+              <li><a href="#about" className={styles.navLink}>О компании и реквизиты</a></li>
+              <li><a href="#contacts" className={styles.navLink}>Контакты</a></li>
             </ul>
           </div>
         </div>

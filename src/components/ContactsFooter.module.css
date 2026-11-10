@@ -1,67 +1,67 @@
 .footer {
   background-color: var(--color-cocoa-deep);
   color: #ffffff;
-  padding: 80px 32px 40px 32px;
+  padding: 68px 24px 36px;
   position: relative;
 }
 
 .container {
-  max-width: 1376px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
 .topGrid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr 0.8fr;
   gap: 48px;
-  margin-bottom: 60px;
+  margin-bottom: 52px;
 }
 
-.brandCol h3 {
+.brandHeading {
   font-family: var(--font-display);
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 800;
   color: #ffffff;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .brandDesc {
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.72);
   line-height: 1.6;
   max-width: 380px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .requisitesBox {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.58);
   line-height: 1.6;
-  border-left: 2px solid var(--color-gold);
+  border-left: 1px solid var(--color-gold);
   padding-left: 12px;
 }
 
 .colTitle {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--color-gold);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .contactList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .contactItem {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.86);
   line-height: 1.5;
 }
 
@@ -71,15 +71,15 @@
   flex-shrink: 0;
 }
 
-.navCol ul {
+.navList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 11px;
 }
 
 .navLink {
-  font-size: 15px;
+  font-size: 14.5px;
   color: rgba(255, 255, 255, 0.75);
   transition: color var(--transition-fast);
 }
@@ -90,12 +90,12 @@
 
 .bottomBar {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 28px;
+  padding-top: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.52);
   flex-wrap: wrap;
   gap: 16px;
 }
@@ -104,22 +104,28 @@
   color: #ffffff;
   text-decoration: underline;
   text-underline-offset: 3px;
-  transition: color 0.2s ease;
+  transition: color var(--transition-fast);
 }
 
 .footerPhoneLink:hover {
   color: var(--color-gold);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .topGrid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 32px;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .footer {
-    padding: 50px 16px 80px 16px;
+    padding: 48px 16px 96px;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
