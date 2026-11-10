@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styles from './MobileStickyBar.module.css';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, FileSpreadsheet } from 'lucide-react';
 
 interface MobileStickyBarProps {
   onOpenInquiry: () => void;
@@ -10,14 +10,18 @@ interface MobileStickyBarProps {
 
 export default function MobileStickyBar({ onOpenInquiry }: MobileStickyBarProps) {
   const handleWhatsApp = () => {
-    window.open('https://wa.me/77273830906?text=' + encodeURIComponent('Здравствуйте! Интересует оптовый прайс-лист Лад Коммерц.'), '_blank');
+    window.open(
+      'https://wa.me/77078233422?text=' +
+        encodeURIComponent('Здравствуйте! Интересуют условия поставок кондитерских изделий ТОО Лад Коммерц.'),
+      '_blank'
+    );
   };
 
   return (
     <div className={styles.stickyBar}>
       <div className={styles.buttons}>
         <button type="button" className={styles.btnPrice} onClick={onOpenInquiry}>
-          Прайс-лист
+          Рассчитать условия
         </button>
         <button type="button" className={styles.btnWhatsApp} onClick={handleWhatsApp}>
           <MessageCircle size={16} />

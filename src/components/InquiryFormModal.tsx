@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import styles from './InquiryFormModal.module.css';
-import { X, CheckCircle2, FileDown, MessageCircle } from 'lucide-react';
+import { X, CheckCircle2, Building, Store } from 'lucide-react';
 
 interface InquiryFormModalProps {
   isOpen: boolean;
@@ -13,25 +13,30 @@ interface InquiryFormModalProps {
 export default function InquiryFormModal({ isOpen, onClose, initialCategory }: InquiryFormModalProps) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [businessType, setBusinessType] = useState<'retail' | 'wholesale'>('retail');
   const [company, setCompany] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedFactories, setSelectedFactories] = useState<string[]>([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (initialCategory) {
-      setSelectedCategories([initialCategory]);
+      setSelectedFactories([initialCategory]);
     } else {
-      setSelectedCategories(['Шоколад и конфеты', 'Печенье и вафли']);
+      setSelectedFactories([
+        'Кондитерская фабрика «Алёшина»',
+        '«Черногорский Кондитер»',
+        '«Томский Кондитер»',
+      ]);
     }
     setIsSubmitted(false);
   }, [initialCategory, isOpen]);
 
   if (!isOpen) return null;
 
-  const toggleCategory = (cat: string) => {
-    setSelectedCategories((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
+  const toggleFactory = (factoryName: string) => {
+    setSelectedFactories((prev) =>
+      prev.includes(factoryName) ? prev.filter((f) => f !== factoryName) : [...prev, factoryName]
     );
   };
 
@@ -53,12 +58,35 @@ export default function InquiryFormModal({ isOpen, onClose, initialCategory }: I
 
         {!isSubmitted ? (
           <div>
-            <h3 className={styles.title}>Запрос оптового прайс-листа</h3>
+            <h3 className={styles.title}>Расчет условий поставок</h3>
             <p className={styles.subtitle}>
-              Заполните контактные данные, и мы вышлем актуальный прайс-лист кондитерских изделий со склада в Алматы.
+              Цены и условия формируются индивидуально под формат торговой точки. Заполните заявку — менеджер свяжется с вами и рассчитает персональные условия.
             </p>
 
             <form onSubmit={handleSubmit}>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Формат вашего бизнеса *</label>
+                <div className={styles.businessTypeGrid}>
+                  <button
+                    type="button"
+                    className={`${styles.typeBtn} ${businessType === 'retail' ? styles.typeBtnActive : ''}`}
+                    onClick={() => setBusinessType('retail')}
+                  >
+                    <Store size={18} />
+                    <span>Розничный магазин / сеть</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className={`${styles.typeBtn} ${businessType === 'wholesale' ? styles.typeBtnActive : ''}`}
+                    onClick={() => setBusinessType('wholesale')}
+                  >
+                    <Building size={18} />
+                    <span>Оптовая база / дистрибьютор</span>
+                  </button>
+                </div>
+              </div>
+
               <div className={styles.formGroup}>
                 <label className={styles.label}>Ваше имя или контактное лицо *</label>
                 <input
@@ -72,11 +100,11 @@ export default function InquiryFormModal({ isOpen, onClose, initialCategory }: I
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.label}>Телефон или WhatsApp *</label>
+                <label className={styles.label}>Сотовый телефон или WhatsApp *</label>
                 <input
                   type="tel"
                   required
-                  placeholder="+7 (___) ___-__-__"
+                  placeholder="+7 (7__) ___-__-__"
                   className={styles.input}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
@@ -84,10 +112,10 @@ export default function InquiryFormModal({ isOpen, onClose, initialCategory }: I
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.label}>Название магазина / компании / сети</label>
+                <label className={styles.label}>Название точки / магазина / ИП</label>
                 <input
                   type="text"
-                  placeholder="Магазин «У дома», супермаркет или ИП"
+                  placeholder="Например: магазин «Берёзка» или ИП Смирнов"
                   className={styles.input}
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
@@ -95,24 +123,28 @@ export default function InquiryFormModal({ isOpen, onClose, initialCategory }: I
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.label}>Интересующие категории:</label>
+                <label className={styles.label}>Интересующие фабрики:</label>
                 <div className={styles.checkboxGrid}>
-                  {['Шоколад и конфеты', 'Печенье и вафли', 'Мармелад и карамель', 'Халва и восточные сладости'].map((cat) => (
-                    <label key={cat} className={styles.checkboxLabel}>
+                  {[
+                    'Кондитерская фабрика «Алёшина»',
+                    '«Черногорский Кондитер»',
+                    '«Томский Кондитер»',
+                  ].map((factory) => (
+                    <label key={factory} className={styles.checkboxLabel}>
                       <input
                         type="checkbox"
                         className={styles.checkbox}
-                        checked={selectedCategories.includes(cat)}
-                        onChange={() => toggleCategory(cat)}
+                        checked={selectedFactories.includes(factory)}
+                        onChange={() => toggleFactory(factory)}
                       />
-                      <span>{cat}</span>
+                      <span>{factory}</span>
                     </label>
                   ))}
                 </div>
               </div>
 
               <button type="submit" disabled={loading} className={styles.submitBtn}>
-                {loading ? 'Отправка...' : 'Получить оптовый прайс-лист'}
+                {loading ? 'Отправка...' : 'Рассчитать индивидуальные условия'}
               </button>
             </form>
           </div>
@@ -121,18 +153,18 @@ export default function InquiryFormModal({ isOpen, onClose, initialCategory }: I
             <div className={styles.successIcon}>
               <CheckCircle2 size={36} />
             </div>
-            <h3 className={styles.successTitle}>Заявка принята</h3>
+            <h3 className={styles.successTitle}>Заявка успешно принята</h3>
             <p className={styles.successText}>
-              Спасибо, <strong>{name}</strong>. Мы свяжемся с вами по номеру <strong>{phone}</strong> и отправим оптовый прайс-лист со складскими остатками на ул. Черноморская, 12.
+              Спасибо, <strong>{name}</strong>! Мы подготовим индивидуальный расчет условий поставок для вашей точки и перезвоним по номеру <strong>{phone}</strong> в течение 15 минут.
             </p>
 
             <div className={styles.successActions}>
               <button
                 type="button"
-                className={styles.btnDownload}
+                className={styles.btnClose}
                 onClick={onClose}
               >
-                Закрыть
+                Отлично, понятно
               </button>
             </div>
           </div>

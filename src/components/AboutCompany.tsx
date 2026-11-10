@@ -10,20 +10,20 @@ export default function AboutCompany() {
         <div>
           <h2 className={styles.title}>О компании ТОО «Лад Коммерц»</h2>
           <p className={styles.text}>
-            ТОО «Лад Коммерц» работает на рынке оптовой торговли кондитерскими изделиями в Алматы с 2005 года. Офис и оптовый склад расположены в Жетысуском районе по адресу: ул. Черноморская, 12.
+            ТОО «Лад Коммерц» работает на рынке дистрибьюции кондитерских изделий в Алматы и Алматинской области с 2005 года. Офис и собственный складской комплекс расположены по адресу: ул. Черноморская, 12.
           </p>
           <p className={styles.text}>
-            Компания осуществляет прямые поставки сладостей от фабрик-производителей Казахстана и стран СНГ. Отгружаем продукцию магазинам, розничным сетям и оптовым покупателям с полным пакетом документов: ЭСФ, электронные накладные и сертификаты соответствия ЕАС.
+            Компания является официальным дистрибьютором трех ведущих российских кондитерских предприятий: Кондитерской фабрики «Алёшина», «Кондитерского концерна Черногорский» и завода «Томский Кондитер». Обеспечиваем ритмичные прямые поставки розничным магазинам, торговым сетям и оптовым складам региона с полным пакетом документов (ЭСФ, электронные накладные, сертификаты ЕАС).
           </p>
 
           <div className={styles.statsGrid}>
             <div className={styles.statCard}>
               <div className={styles.statVal}>19 лет</div>
-              <div className={styles.statLabel}>На рынке оптовой торговли Казахстана (с 2005 года)</div>
+              <div className={styles.statLabel}>На рынке дистрибьюции Казахстана (с 2005 года)</div>
             </div>
             <div className={styles.statCard}>
-              <div className={styles.statVal}>500+</div>
-              <div className={styles.statLabel}>Позиций кондитерского ассортимента в наличии</div>
+              <div className={styles.statVal}>3 завода</div>
+              <div className={styles.statLabel}>Официальные прямые контракты с производителями</div>
             </div>
             <div className={styles.statCard}>
               <div className={styles.statVal}>100%</div>
@@ -31,7 +31,7 @@ export default function AboutCompany() {
             </div>
             <div className={styles.statCard}>
               <div className={styles.statVal}>Алматы</div>
-              <div className={styles.statLabel}>Оптовый склад на ул. Черноморская, 12</div>
+              <div className={styles.statLabel}>Складской комплекс на ул. Черноморская, 12</div>
             </div>
           </div>
         </div>
@@ -66,8 +66,10 @@ export default function AboutCompany() {
             </div>
 
             <div className={styles.detailRow}>
-              <span className={styles.detailLabel}>Телефоны:</span>
-              <span className={styles.detailValue}>+7 (727) 383-09-06, +7 (707) 823-34-22</span>
+              <span className={styles.detailLabel}>Сотовые телефоны:</span>
+              <span className={styles.detailValue}>
+                +7 (701) 713-97-38 (Kcell),<br />+7 (707) 823-34-22 (Tele2 / WhatsApp)
+              </span>
             </div>
 
             <div className={styles.detailRow}>

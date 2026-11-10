@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import HeroSection from '@/components/HeroSection';
-import CategoryShowcase from '@/components/CategoryShowcase';
+import FactoryPartners from '@/components/FactoryPartners';
+import CoverageMap from '@/components/CoverageMap';
 import AboutCompany from '@/components/AboutCompany';
 import WarehouseLogistics from '@/components/WarehouseLogistics';
 import CollaborationSteps from '@/components/CollaborationSteps';
@@ -12,22 +13,23 @@ import MobileStickyBar from '@/components/MobileStickyBar';
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
+  const [selectedTarget, setSelectedTarget] = useState<string | undefined>();
 
-  const handleOpenInquiry = (category?: string) => {
-    setSelectedCategory(category);
+  const handleOpenInquiry = (targetName?: string) => {
+    setSelectedTarget(targetName);
     setModalOpen(true);
   };
 
   const handleCloseInquiry = () => {
     setModalOpen(false);
-    setSelectedCategory(undefined);
+    setSelectedTarget(undefined);
   };
 
   return (
     <main>
       <HeroSection onOpenInquiry={handleOpenInquiry} />
-      <CategoryShowcase onSelectCategory={handleOpenInquiry} />
+      <FactoryPartners onSelectFactory={handleOpenInquiry} />
+      <CoverageMap onConnectStore={() => handleOpenInquiry('Подключение торговой точки')} />
       <AboutCompany />
       <WarehouseLogistics />
       <CollaborationSteps onOpenInquiry={() => handleOpenInquiry()} />
@@ -36,7 +38,7 @@ export default function Home() {
       <InquiryFormModal
         isOpen={modalOpen}
         onClose={handleCloseInquiry}
-        initialCategory={selectedCategory}
+        initialCategory={selectedTarget}
       />
 
       <MobileStickyBar onOpenInquiry={() => handleOpenInquiry()} />
